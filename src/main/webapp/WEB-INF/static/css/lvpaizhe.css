@@ -24,6 +24,14 @@ h1,h2,h3 {
   margin-right: auto;
 }
 
+.lvpaizhe-a-padding {
+  padding-top: 7px;
+}
+
+.lvpaizhe-margin-bottom {
+  margin-bottom: 20px;
+}
+
 .homepage-carousel-margin-top {
   margin-top: -20px;
 }

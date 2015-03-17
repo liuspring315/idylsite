@@ -25,8 +25,17 @@
     <mvc:resources mapping="/resources/js/**" location="/WEB-INF/static/js/" />
     <mvc:resources mapping="/resources/css/**" location="/WEB-INF/static/css/"/>
     <mvc:resources mapping="/resources/img/**" location="/WEB-INF/static/img/"/>
-
     <mvc:resources mapping="/resources/fonts/**" location="/WEB-INF/static/fonts/"/>
+    <mvc:resources mapping="/resources/assets/**" location="/WEB-INF/static/assets/"/>
+
+    <mvc:resources mapping="/resources/js/**" location="/WEB-INF/static/js/" />
+    <mvc:resources mapping="/resources/css/**" location="/WEB-INF/static/css/"/>
+    <mvc:resources mapping="/resources/img/**" location="/WEB-INF/static/img/"/>
+
+    <mvc:resources mapping="/resources/manager/bootstrap/**" location="/WEB-INF/static/manager/bootstrap/"/>
+    <mvc:resources mapping="/resources/manager/font-awesome/**" location="/WEB-INF/static/manager/font-awesome/"/>
+    <mvc:resources mapping="/resources/manager/ionicons/**" location="/WEB-INF/static/manager/ionicons/"/>
+    <mvc:resources mapping="/resources/manager/plugins/**" location="/WEB-INF/static/manager/plugins/"/>
 
     <mvc:view-controller path="/error" view-name="error" />
     <mvc:view-controller path="/error/403" view-name="error/403" />

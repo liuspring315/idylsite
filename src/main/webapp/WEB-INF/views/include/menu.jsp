@@ -14,7 +14,7 @@
 
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">首页</a></li>
+                <li class="active"><a href="index.html">首页</a></li>
                 <li><a href="#about">摄影师</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">拍摄地<span class="caret"></span></a>
@@ -29,7 +29,7 @@
                 <li class="visible-lg-block"><a href="#contact">免费活动</a></li>
                 <li><a href="#contact">客片欣赏</a></li>
                 <li class="visible-lg-block"><a href="#contact">关于旅拍者</a></li>
-                <li><a href="#contact">加盟入驻</a></li>
+                <li><a href="server_register.html">加盟入驻</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#contact">登录</a></li>
