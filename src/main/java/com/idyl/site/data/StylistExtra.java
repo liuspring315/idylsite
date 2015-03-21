@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by spring on 15-3-17.
  */
-public class StylistExtra {
+public class StylistExtra  extends UserGeneralInfo{
 	private int userGeneralInfoId;
 	private String introduction;
 	private Integer authentication;

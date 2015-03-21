@@ -24,20 +24,20 @@
     <hr>
     <div class="row">
         <div class="col-lg-6 col-md-offset-3 text-center">
-            <form action="../../index2.html" method="post">
+            <form action="${ctx}/login" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="手机&nbsp;&frasl;用户名&nbsp;&frasl;邮箱">
+                    <input type="text" name="userName" id="userName" class="form-control" placeholder="手机&nbsp;&frasl;用户名&nbsp;&frasl;邮箱">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="密码">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="密码">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
                     <div class="col-xs-8">
                         <div class="checkbox icheck">
                             <label class="">
-                                <input type="checkbox" > 记住我
+                                <input type="checkbox" id="rememberMe"> 记住我
                             </label>
                         </div>
                     </div><!-- /.col -->
@@ -51,14 +51,14 @@
                     <a href="#">忘记密码？</a>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <a href="user_register.html" class="text-center">注册新用户</a>
+                    <a href="${ctx}/user/register" class="text-center">注册新用户</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="row lvpaizhe-margin-bottom">
         <div class="col-sm-12 text-center">
-            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="server_register.html">加盟入驻</a>
+            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="${ctx}/server/register">加盟入驻</a>
         </div>
     </div>
     <!-- Three columns of text below the carousel -->

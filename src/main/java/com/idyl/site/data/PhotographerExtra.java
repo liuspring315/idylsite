@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by spring on 15-3-17.
  */
-public class PhotographerExtra {
+public class PhotographerExtra  extends UserGeneralInfo{
 	private int userGeneralInfoId;
 	private String introduction;
 	private Integer authentication;

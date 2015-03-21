@@ -3,7 +3,7 @@ package com.idyl.site.data;
 /**
  * Created by spring on 15-3-17.
  */
-public class CustomerExtra {
+public class CustomerExtra  extends UserGeneralInfo{
 	private int userGeneralInfoId;
 	private String signature;
 	private String destination;

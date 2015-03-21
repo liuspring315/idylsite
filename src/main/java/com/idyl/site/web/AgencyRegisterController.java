@@ -1,7 +1,7 @@
 package com.idyl.site.web;
 
 import com.idyl.site.data.UserGeneralInfo;
-import com.idyl.site.service.UserRegisterService;
+import com.idyl.site.service.AgencyRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,26 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.validation.Valid;
 
 /**
- * Created by spring on 15-3-17.
+ * Created by spring on 15-3-19.
  */
 @Controller
-@RequestMapping("user")
-public class UserRegisterController {
-
-
+@RequestMapping("agency")
+public class AgencyRegisterController {
 	@Autowired
-	private UserRegisterService userRegisterService;
+	private AgencyRegisterService agencyRegisterService;
 
-	@RequestMapping(value="register",method = RequestMethod.GET)
+	@RequestMapping("register")
 	public String index(Model model){
-		return "user/user_register";
+		return "agency/agency_register";
 	}
+
 	@RequestMapping(value="register",method = RequestMethod.POST)
 	public String register(Model model,@Valid UserGeneralInfo userGeneralInfo,BindingResult bindingResult){
 		if(bindingResult.hasErrors()){
-			return "user/user_register";
+			return "agency/agency_register";
 		}
-		userRegisterService.saveUser(userGeneralInfo);
-		return "user/user_register_success";
+		agencyRegisterService.saveUser(userGeneralInfo);
+		return "agency/agency_register_success";
 	}
 }

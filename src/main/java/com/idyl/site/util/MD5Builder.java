@@ -139,8 +139,8 @@ public class MD5Builder {
      * @param args  
      */  
     public static void main(String[] args) {   
-        //logger.info(getMD5("admin")); 
-    	System.out.println(getMD5("1"));
+        //logger.info(getMD5("admin"));
+    	System.out.println(getMD5(""));
     }   
   
 }   

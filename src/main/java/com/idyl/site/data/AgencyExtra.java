@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * Created by spring on 15-3-17.
  */
-public class AgencyExtra {
+public class AgencyExtra extends UserGeneralInfo{
 	private int userGeneralInfoId;
 	private Integer authentication;
 	private Integer certificateType;
@@ -20,6 +20,8 @@ public class AgencyExtra {
 	private String dressDesc;
 	private String address;
 	private Integer registerCheckState;
+
+
 
 	public int getUserGeneralInfoId() {
 		return userGeneralInfoId;

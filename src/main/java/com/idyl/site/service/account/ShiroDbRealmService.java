@@ -1,6 +1,9 @@
 package com.idyl.site.service.account;
 
+import com.idyl.site.data.UserGeneralInfo;
+import com.idyl.site.data.UserTypeEnum;
 import com.idyl.site.service.account.AccountService;
+import com.idyl.site.util.SpringContextUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -11,6 +14,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -25,9 +30,6 @@ import java.util.Map;
 public class ShiroDbRealmService extends AuthorizingRealm {
     public static final String NAME = "ShiroDbRealmService";
 
-    @Autowired
-    private AccountService accountService;
-
 
     /**
      * 认证回调函数, 登录时调用.
@@ -40,12 +42,16 @@ public class ShiroDbRealmService extends AuthorizingRealm {
         if (username == null) {
             throw new AccountException("用户名不能为空");
         }
+	    String[] arrStr = username.split(",");
+	    Integer userType = Integer.parseInt(arrStr[1]);
+	    AccountService accountService = (AccountService) SpringContextUtil.getBean(UserTypeEnum.getUserTypeEnum(userType).getDaoClassName());
 
-        Map<String,Object> user = accountService.findUserByLoginName(username,password);
+	    UserGeneralInfo user = accountService.findByLoginName(username,password);
+//
         if (user == null) {
             throw new UnknownAccountException("用户不存在");
         }
-        return new SimpleAuthenticationInfo(user,password,NAME);
+        return new SimpleAuthenticationInfo(user,username,NAME);
 
     }
 
@@ -95,12 +101,12 @@ public class ShiroDbRealmService extends AuthorizingRealm {
         }
     }
 
-    public static Map<String,Object> getSessionUser() {
+    public static UserGeneralInfo getSessionUser() {
 
         Subject subject = SecurityUtils.getSubject();
 
         if (subject != null && subject.getPrincipal() != null && subject.getPrincipal() instanceof Map) {
-            return (Map<String,Object>) subject.getPrincipal();
+            return (UserGeneralInfo) subject.getPrincipal();
         }
 
         return null;

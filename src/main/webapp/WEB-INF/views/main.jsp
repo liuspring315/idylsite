@@ -21,21 +21,21 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
             <div class="item active">
-                <img src="img/DSC02930.JPG" alt="...">
+                <img src="${resourceUrl}/img/DSC02930.JPG" alt="...">
                 <div class="carousel-caption">
                     <h2>亚洲-泰国</h2>
                     <p>在泰国清莱找到一家美丽而隐秘的住处，享受私家游泳池的任性</p>
                 </div>
             </div>
             <div class="item">
-                <img src="img/DSC02951.JPG" alt="...">
+                <img src="${resourceUrl}/img/DSC02951.JPG" alt="...">
                 <div class="carousel-caption">
                     <h2>亚洲-泰国-曼谷</h2>
                     <p>走在曼谷街头，你会发现遍地都是寺庙……</p>
                 </div>
             </div>
             <div class="item">
-                <img src="img/DSCF4654.JPG" alt="...">
+                <img src="${resourceUrl}/img/DSCF4654.JPG" alt="...">
                 <div class="carousel-caption">
                     <h2>亚洲-泰国-清莱</h2>
                     <p>白庙是清莱最著名的景点，远观璀璨无比，晶莹剔透</p>
@@ -118,7 +118,7 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    <img class="img-circle" src="img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
+                    <img class="img-circle" src="${resourceUrl}/img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
                 </div>
                 <div class="col-sm-8">
                     <table class="photoer-table">
@@ -135,7 +135,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <img src="img/4473131_183410472000_2.jpg" width="262" height="175">
+                    <img src="${resourceUrl}/img/4473131_183410472000_2.jpg" width="262" height="175">
                 </div>
             </div>
         </div>
@@ -143,7 +143,7 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    <img class="img-circle" src="img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
+                    <img class="img-circle" src="${resourceUrl}/img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
                 </div>
                 <div class="col-sm-8">
                     <table class="photoer-table">
@@ -160,7 +160,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <img src="img/4473131_183410472000_2.jpg" width="262" height="175">
+                    <img src="${resourceUrl}/img/4473131_183410472000_2.jpg" width="262" height="175">
                 </div>
             </div>
         </div>
@@ -168,7 +168,7 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    <img class="img-circle" src="img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
+                    <img class="img-circle" src="${resourceUrl}/img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
                 </div>
                 <div class="col-sm-8">
                     <table class="photoer-table">
@@ -185,7 +185,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <img src="img/4473131_183410472000_2.jpg" width="262" height="175">
+                    <img src="${resourceUrl}/img/4473131_183410472000_2.jpg" width="262" height="175">
                 </div>
             </div>
         </div>
@@ -193,7 +193,7 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    <img class="img-circle" src="img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
+                    <img class="img-circle" src="${resourceUrl}/img/3801213fb80e7bec12b00fef2f2eb9389b506b51.jpg" alt="..." width="80" height="80">
                 </div>
                 <div class="col-sm-8">
                     <table class="photoer-table">
@@ -210,7 +210,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    <img src="img/4473131_183410472000_2.jpg" width="262" height="175">
+                    <img src="${resourceUrl}/img/4473131_183410472000_2.jpg" width="262" height="175">
                 </div>
             </div>
         </div>
@@ -231,15 +231,15 @@
     </div>
     <div class="row lvpaizhe-background-color">
         <div class="col-sm-4  place" >
-            <img src="img/3(2).jpg" alt="..."  width="370" height="250">
+            <img src="${resourceUrl}/img/3(2).jpg" alt="..."  width="370" height="250">
             <p class="text-center">三亚</p>
         </div>
         <div class="col-sm-4  place" >
-            <img src="img/3(2).jpg" alt="..."  width="370" height="250">
+            <img src="${resourceUrl}/img/3(2).jpg" alt="..."  width="370" height="250">
             <p class="text-center">三亚</p>
         </div>
         <div class="col-sm-4  place" >
-            <img src="img/3(2).jpg" alt="..." width="370" height="250" >
+            <img src="${resourceUrl}/img/3(2).jpg" alt="..." width="370" height="250" >
             <p class="text-center">三亚</p>
         </div>
     </div>
@@ -250,15 +250,15 @@
     </div>
     <div class="row lvpaizhe-background-color">
         <div class="col-sm-4  place" >
-            <img src="img/3(2).jpg" alt="..."  width="370" height="250">
+            <img src="${resourceUrl}/img/3(2).jpg" alt="..."  width="370" height="250">
             <p class="text-center">三亚</p>
         </div>
         <div class="col-sm-4  place" >
-            <img src="img/3(2).jpg" alt="..."  width="370" height="250">
+            <img src="${resourceUrl}/img/3(2).jpg" alt="..."  width="370" height="250">
             <p class="text-center">三亚</p>
         </div>
         <div class="col-sm-4  place" >
-            <img src="img/3(2).jpg" alt="..." width="370" height="250" >
+            <img src="${resourceUrl}/img/3(2).jpg" alt="..." width="370" height="250" >
             <p class="text-center">三亚</p>
         </div>
     </div>
@@ -283,7 +283,7 @@
             <div class="modal-body">
                 <div class="login-box-body">
                     <p class="login-box-msg">欢迎您回到旅拍者</p>
-                    <form action="../../index2.html" method="post">
+                    <form action="${ctx}/login" method="post">
                         <div class="form-group has-feedback">
                             <input type="text" class="form-control" placeholder="手机&nbsp;&frasl;用户名&nbsp;&frasl;邮箱">
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -310,7 +310,7 @@
                             <a href="#">忘记密码？</a>
                         </div>
                         <div class="col-xs-6 text-right">
-                            <a href="user_register.html" class="text-center">注册新用户</a>
+                            <a href="${ctx}/user/register" class="text-center">注册新用户</a>
                         </div>
                     </div><!-- /.social-auth-links -->
                 </div>

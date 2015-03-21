@@ -1,3 +1,4 @@
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/views/include/taglibs.jsp" %>
 <!DOCTYPE html>
@@ -11,7 +12,7 @@
 <!-- 路径导航 -->
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="index.html">首页</a></li>
+        <li><a href="${ctx}/main">首页</a></li>
         <li class="active">会员注册</li>
     </ol>
 </div>
@@ -27,23 +28,26 @@
     <hr>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="${ctx}/user/register" method="post" id="userRegisterForm">
                 <div class="form-group">
-                    <label for="username" class="col-sm-4 control-label">用户名</label>
+                    <from:errors path="userName" cssClass="errorClass"/>
+                    <label for="userName" class="col-sm-4 control-label">用户名</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="username" placeholder="可使用英文字符、数字、汉字，最长××字符，必填">
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="可使用英文字符、数字、汉字，最长××字符，必填">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Email" class="col-sm-4 control-label">电子邮箱</label>
+                    <from:errors path="email" cssClass="errorClass"/>
+                    <label for="email" class="col-sm-4 control-label">电子邮箱</label>
                     <div class="col-sm-5">
-                        <input type="Email" class="form-control" id="Email" placeholder="请填写正确邮箱，进行验证，必填">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="请填写正确邮箱，进行验证，必填">
                     </div>
                 </div>
                 <div class="form-group">
+                    <from:errors path="password" cssClass="errorClass"/>
                     <label for="password" class="col-sm-4 control-label">密码</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填">
                     </div>
                 </div>
                 <div class="form-group">
@@ -122,52 +126,7 @@
     </div><!-- /.modal-dialog -->
 </div>
 
-<!-- /登录弹出框 -->
-<div class="modal fade" id="bs-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="mySmallModalLabel">登录</h4>
-            </div>
-            <div class="modal-body">
-                <div class="login-box-body">
-                    <p class="login-box-msg">欢迎您回到旅拍者</p>
-                    <form action="../../index2.html" method="post">
-                        <div class="form-group has-feedback">
-                            <input type="text" class="form-control" placeholder="手机&nbsp;&frasl;用户名&nbsp;&frasl;邮箱">
-                            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                        </div>
-                        <div class="form-group has-feedback">
-                            <input type="password" class="form-control" placeholder="密码">
-                            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-8">
-                                <div class="checkbox icheck">
-                                    <label class="">
-                                        <div class="icheckbox_square-blue" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" ></div> 记住我
-                                    </label>
-                                </div>
-                            </div><!-- /.col -->
-                            <div class="col-xs-4">
-                                <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
-                            </div><!-- /.col -->
-                        </div>
-                    </form>
-                    <div class="modal-footer">
-                        <div class="col-xs-6 text-left">
-                            <a href="#">忘记密码？</a>
-                        </div>
-                        <div class="col-xs-6 text-right">
-                            <a href="user_register.html" class="text-center">注册新用户</a>
-                        </div>
-                    </div><!-- /.social-auth-links -->
-                </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div>
+<%@ include file="/WEB-INF/views/include/login_modal.jsp" %>
 
 <jsp:include flush="true" page="/WEB-INF/views/include/footer.jsp"/>
 

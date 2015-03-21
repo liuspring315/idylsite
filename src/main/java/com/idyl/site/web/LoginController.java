@@ -1,5 +1,6 @@
 package com.idyl.site.web;
 
+import com.idyl.site.data.UserGeneralInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
@@ -31,19 +32,20 @@ public class LoginController  {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("username") String username,
-                        @RequestParam("password") String password,Model model,
+    public String login(@RequestParam("userName") String username,
+                        @RequestParam("userType") int userType,
+                        @RequestParam("password") String password,Model model,String rememberMe,
                         HttpServletRequest request,HttpSession session) {
 
         Subject currentUser = SecurityUtils.getSubject();
         String result = "login";
         if (!currentUser.isAuthenticated()) {
-            result = login(currentUser,username,password,model);
+            result = login(currentUser,username,password,model,rememberMe,userType);
         }else{//重复登录
-            Map<String,Object> user = (Map<String,Object>) currentUser.getPrincipal();
-            if(!user.get("USER_NAME").toString().equalsIgnoreCase(username)){//如果登录名不同
+	        UserGeneralInfo user = (UserGeneralInfo) currentUser.getPrincipal();
+            if(!user.getUserName().toString().equalsIgnoreCase(username)){//如果登录名不同
                 currentUser.logout();
-                result = login(currentUser,username,password,model);
+                result = login(currentUser,username,password,model,rememberMe,userType);
             }else{
                 result = "redirect:/main";
             }
@@ -53,11 +55,11 @@ public class LoginController  {
 
     }
 
-    private String login(Subject currentUser,String username,String password,Model model){
+    private String login(Subject currentUser,String username,String password,
+                         Model model,String rememberMe,int userType){
         String result = "login";
-        UsernamePasswordToken token = new UsernamePasswordToken(username,
-                password);
-        token.setRememberMe(false);
+        UsernamePasswordToken token = new UsernamePasswordToken(userType+","+username, password);
+        token.setRememberMe("1".equals(rememberMe));
         try {
             currentUser.login(token);
             result = "redirect:/main";

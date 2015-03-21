@@ -11,7 +11,7 @@
 <!-- 路径导航 -->
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="index.html">首页</a></li>
+        <li><a href="${ctx}/main">首页</a></li>
         <li class="active">加盟入驻</li>
     </ol>
 </div>
@@ -20,7 +20,7 @@
 <div class="container marketing">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <img src="img/g3.jpg"  height="420" >
+            <img src="${resourceUrl}/img/g3.jpg"  height="420" >
         </div>
     </div>
     <!-- Three columns of text below the carousel -->
@@ -39,19 +39,19 @@
             <span class="icon-camera-retro icon-4x"></span>
             <h2>摄影师</h2>
             <p>独立个人摄影师。我的时间我做主，我为自己代言。<br>&nbsp;</p>
-            <a href="photographer_register.html" role="button" class="btn btn-primary btn-lg btn-block">选择摄影师身份注册</a>
+            <a href="${ctx}/photoer/register" role="button" class="btn btn-primary btn-lg btn-block">选择摄影师身份注册</a>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <span class="icon-building icon-4x"></span>
             <h2>摄影机构</h2>
             <p>拥有摄影师、造型师、摄影服装及影棚资源的摄影工作室、影楼等。</p>
-            <a href="agency_register.html" role="button" class="btn btn-primary btn-lg btn-block">选择摄影机构身份注册</a>
+            <a href="${ctx}/agency/register" role="button" class="btn btn-primary btn-lg btn-block">选择摄影机构身份注册</a>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <span class="icon-cut icon-4x"></span>
             <h2>造型师</h2>
             <p>个人造型师及化妆师。<br>&nbsp;</p>
-            <a href="stylist_register.html" role="button" class="btn btn-primary btn-lg btn-block">选择造型师身份注册</a>
+            <a href="${ctx}/stylist/register" role="button" class="btn btn-primary btn-lg btn-block">选择造型师身份注册</a>
         </div><!-- /.col-lg-4 -->
     </div><!-- /.row -->
 </div>

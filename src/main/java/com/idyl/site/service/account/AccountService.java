@@ -1,12 +1,6 @@
 package com.idyl.site.service.account;
 
-import com.idyl.site.dao.account.UserDao;
-import com.idyl.site.util.MD5Builder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Map;
+import com.idyl.site.data.UserGeneralInfo;
 
 /**
  *
@@ -15,24 +9,11 @@ import java.util.Map;
  * @author  liuzhaocun
  * @version 0.1
  */
-//Spring Bean的标识.
-@Component("accountService")
-//默认将类中的所有public函数纳入事务管理.
-@Transactional(readOnly = true)
-public class  AccountService {
-    @Autowired
-    private UserDao userDao;
+
+public interface  AccountService {
 
 
-
-    public Map<String,Object> findUserByLoginName(String loginName,String password) {
-        return userDao.findByLoginName(loginName, MD5Builder.getMD5(password));
-    }
-
-    public static void main(String[] args){
-        System.out.println(MD5Builder.getMD5("abc123"));
-        //e99a18c428cb38d5f260853678922e03
-    }
+	public UserGeneralInfo findByLoginName(String loginName,String password) ;
 
 
 }

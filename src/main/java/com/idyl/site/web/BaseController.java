@@ -1,6 +1,7 @@
 package com.idyl.site.web;
 
 
+import com.idyl.site.data.UserGeneralInfo;
 import com.idyl.site.service.account.ShiroDbRealmService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -227,6 +228,12 @@ public class BaseController implements ServletContextAware {
 
         return ip;
     }
+
+
+	public UserGeneralInfo getCurrUser(HttpServletRequest request) {
+		UserGeneralInfo user = ShiroDbRealmService.getSessionUser();
+		return user;
+	}
 
 
 

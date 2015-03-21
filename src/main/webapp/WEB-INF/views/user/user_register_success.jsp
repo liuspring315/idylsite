@@ -1,3 +1,4 @@
+<%@ taglib prefix="from" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/views/include/taglibs.jsp" %>
 <!DOCTYPE html>
@@ -11,82 +12,30 @@
 <!-- 路径导航 -->
 <div class="container">
     <ol class="breadcrumb">
-        <li><a href="${ctx}/main">首页</a></li>
-        <li><a href="${ctx}/server/register">加盟入驻</a></li>
-        <li class="active">摄影师注册</li>
+        <li><a href="index.html">首页</a></li>
+        <li class="active">注册成功</li>
     </ol>
 </div>
-
-
 <div class="container marketing">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h2>欢迎成为旅拍者</h2>
-            <p>用你的镜头记录美丽，记录感动</p>
+            <h2>感谢您注册成功：）</h2>
+            <p>记录生活中精彩的瞬间</p>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <form class="form-horizontal" method="post" action="${ctx}/photoer/register">
-                <div class="form-group">
-                    <label for="userName"  class="col-sm-4 control-label">用户名</label>
-                    <div class="col-sm-5">
-                        <input type="text" name="userName" class="form-control" id="username" placeholder="可使用英文字符、数字、汉字，最长××字符，必填">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email"  class="col-sm-4 control-label">电子邮箱</label>
-                    <div class="col-sm-5">
-                        <input type="email" name="email" class="form-control" id="Email" placeholder="请填写正确邮箱，进行验证，必填">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Mobile" class="col-sm-4 control-label">移动电话</label>
-                    <div class="col-sm-5">
-                        <input type="text" name="mobile" class="form-control" id="Mobile" placeholder="请填写正确手机号码，旅拍者服务专员会与您联系，必填">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-4 control-label">密码</label>
-                    <div class="col-sm-5">
-                        <input type="password" name="password" class="form-control" id="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password2" class="col-sm-4 control-label">确认密码</label>
-                    <div class="col-sm-5">
-                        <input type="password" class="form-control" id="password2" placeholder="请确认密码，必填">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-1 col-sm-10">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> 我已阅读并同意
-                            </label>
-
-                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-photographer-register-modal">
-                                注册协议
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-1 col-sm-5">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#bs-login">&nbsp;已有帐号？&nbsp;</button>
-                    </div>
-                    <div class="col-sm-1">
-                        <button type="submit" class="btn btn-primary">&nbsp;注册&nbsp;</button>
-                    </div>
-                </div>
-            </form>
+            注册成功！
+        </div>
+    </div>
+    <div class="row lvpaizhe-margin-bottom">
+        <div class="col-sm-12 text-center">
+            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="server_register.html">加盟入驻</a>
         </div>
     </div>
     <!-- Three columns of text below the carousel -->
 </div>
-
-
 <!-- /服务协议提示框 -->
 <div class="modal fade" id="bs-photographer-register-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog ">
@@ -115,7 +64,6 @@
                 5.&nbsp;侵害他人合法权益的，及含有各项法律、行政法规禁止的其他内容的<br />
                 6.&nbsp;破坏危害自然环境、历史文化遗迹、传统民风民俗的相关内容<br />
                 未成年人的特别注意事项：如果您未满18岁，你不应该使用本网站或输入个人信息，我们也不打算收集18岁以下公民的个人信息。<br />
-
                 *本条款的最终解释权归旅拍者所有<br />
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -126,6 +74,8 @@
 </div>
 
 <%@ include file="/WEB-INF/views/include/login_modal.jsp" %>
+
 <jsp:include flush="true" page="/WEB-INF/views/include/footer.jsp"/>
+
 </body>
 </html>

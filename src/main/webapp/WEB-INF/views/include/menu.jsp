@@ -29,11 +29,11 @@
                 <li class="visible-lg-block"><a href="#contact">免费活动</a></li>
                 <li><a href="#contact">客片欣赏</a></li>
                 <li class="visible-lg-block"><a href="#contact">关于旅拍者</a></li>
-                <li><a href="server_register.html">加盟入驻</a></li>
+                <li><a href="${ctx}/server/register">加盟入驻</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#contact">登录</a></li>
-                <li><a href="#contact">注册</a></li>
+                <li><a href="${ctx}/login">登录</a></li>
+                <li><a href="${ctx}/user/register">注册</a></li>
                 <ul>
         </div>
     </div>

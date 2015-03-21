@@ -1,5 +1,6 @@
 package com.idyl.site.data;
 
+import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -9,8 +10,15 @@ import java.sql.Timestamp;
 public class UserGeneralInfo {
 	private int id;
 	private Integer userType;
+	@Pattern(regexp="w{4,30}",
+			message="请输入正确的电子邮箱")
 	private String userName;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+			+"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+			+"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+			message="请输入正确的电子邮箱")
 	private String email;
+	@Pattern(regexp="S{6,30}")
 	private String password;
 	private String familyName;
 	private String lastName;
@@ -21,6 +29,26 @@ public class UserGeneralInfo {
 	private String headThumb;
 	private Timestamp addTime;
 	private Timestamp beginTime;
+
+	public UserGeneralInfo() {
+	}
+
+	public UserGeneralInfo(int id, Integer userType, String userName, String email, String password, String familyName, String lastName, String mobile, String telephone, Integer location, Date birthday, String headThumb, Timestamp addTime, Timestamp beginTime) {
+		this.id = id;
+		this.userType = userType;
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		this.familyName = familyName;
+		this.lastName = lastName;
+		this.mobile = mobile;
+		this.telephone = telephone;
+		this.location = location;
+		this.birthday = birthday;
+		this.headThumb = headThumb;
+		this.addTime = addTime;
+		this.beginTime = beginTime;
+	}
 
 	public int getId() {
 		return id;
