@@ -43,6 +43,7 @@
                 /main = anon
                 /photoer/register=anon
                 /server/register=anon
+                /agency/register=anon
                 /user/register=anon
                 /stylist/register=anon
                 /logout = logout

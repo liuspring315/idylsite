@@ -17,7 +17,7 @@ public class StylistRegisterService {
 
 	@Autowired
 	private RegisterDAO registerDAO;
-
+	@Transactional(readOnly = false)
 	public void saveUser(UserGeneralInfo userGeneralInfo){
 		userGeneralInfo.setUserType(UserTypeEnum.STYLIST.getCode());
 		userGeneralInfo.setPassword(MD5Builder.getMD5(userGeneralInfo.getPassword()));

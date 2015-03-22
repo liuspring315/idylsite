@@ -28,32 +28,32 @@
     <hr>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <form class="form-horizontal" action="${ctx}/user/register" method="post" id="userRegisterForm">
+            <form:form class="form-horizontal" modelAttribute="userGeneralInfo" action="${ctx}/user/register" method="post" id="userRegisterForm">
                 <div class="form-group">
                     <from:errors path="userName" cssClass="errorClass"/>
                     <label for="userName" class="col-sm-4 control-label">用户名</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="userName" name="userName" placeholder="可使用英文字符、数字、汉字，最长××字符，必填">
+                        <from:input type="text" class="form-control" path="userName" placeholder="可使用英文字符、数字、汉字，最长××字符，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <from:errors path="email" cssClass="errorClass"/>
                     <label for="email" class="col-sm-4 control-label">电子邮箱</label>
                     <div class="col-sm-5">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="请填写正确邮箱，进行验证，必填">
+                        <from:input type="email" class="form-control" path="email" placeholder="请填写正确邮箱，进行验证，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <from:errors path="password" cssClass="errorClass"/>
                     <label for="password" class="col-sm-4 control-label">密码</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填">
+                        <from:input type="password" class="form-control" path="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password2" class="col-sm-4 control-label">确认密码</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="password2" placeholder="请确认密码，必填">
+                        <input type="password" class="form-control" id="password2" placeholder="请确认密码，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,7 +76,7 @@
                         <button type="submit" class="btn btn-primary">&nbsp;注册&nbsp;</button>
                     </div>
                 </div>
-            </form>
+            </form:form>
         </div>
     </div>
     <div class="row lvpaizhe-margin-bottom">

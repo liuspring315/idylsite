@@ -1,5 +1,8 @@
 package com.idyl.site.data;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -10,15 +13,18 @@ import java.sql.Timestamp;
 public class UserGeneralInfo {
 	private int id;
 	private Integer userType;
-	@Pattern(regexp="w{4,30}",
-			message="请输入正确的电子邮箱")
+	@NotNull(message = "用户名不能为空")
+	@Length(min=5, max=20, message="用户名长度必须在5-20之间")
+	@Pattern(regexp = "^[a-zA-Z_]\\w{4,19}$", message = "用户名必须以字母下划线开头，可由字母数字下划线组成")
 	private String userName;
 	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
 			+"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
 			+"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
 			message="请输入正确的电子邮箱")
+	@NotNull(message="电子邮箱不能为空")
 	private String email;
-	@Pattern(regexp="S{6,30}")
+	@NotNull(message="密码不能为空")
+//	@Pattern(regexp="S{6,30}",message="密码长度必须6-30之间")
 	private String password;
 	private String familyName;
 	private String lastName;

@@ -5,6 +5,7 @@ import com.idyl.site.data.UserTypeEnum;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -16,8 +17,8 @@ import java.util.Map;
 public class MainController extends  BaseController{
 
 
-    @RequestMapping("main")
-    public String index(HttpServletRequest request){
+    @RequestMapping("index")
+    public String main(HttpServletRequest request){
 	    UserGeneralInfo user = super.getCurrUser(request);
 	    if(user.getUserType()== UserTypeEnum.CUSTOMER.getCode()) {
 		    return "main";
@@ -32,4 +33,13 @@ public class MainController extends  BaseController{
 	    }
 
     }
+	@RequestMapping("main")
+	public String index(HttpServletRequest request){
+		return "main";
+
+	}
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	public String index() {
+		return "main";
+	}
 }

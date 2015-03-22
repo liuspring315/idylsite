@@ -47,7 +47,7 @@ public class LoginController  {
                 currentUser.logout();
                 result = login(currentUser,username,password,model,rememberMe,userType);
             }else{
-                result = "redirect:/main";
+                result = "redirect:/index";
             }
         }
         return result;
@@ -62,7 +62,7 @@ public class LoginController  {
         token.setRememberMe("1".equals(rememberMe));
         try {
             currentUser.login(token);
-            result = "redirect:/main";
+            result = "redirect:/index";
         } catch (UnknownAccountException uae) {
             model.addAttribute("message","用户不存在");
             result = "login";
