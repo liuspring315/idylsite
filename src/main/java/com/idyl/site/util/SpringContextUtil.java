@@ -3,10 +3,12 @@ package com.idyl.site.util;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by spring on 15-3-21.
  */
+@Service
 public class SpringContextUtil implements ApplicationContextAware {
 
 	// Spring应用上下文环境

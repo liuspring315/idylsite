@@ -87,7 +87,7 @@ public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerEx
 
         ////////////////////////////////////////
 
-        if(returnValue.getViewName() == null){
+        if(returnValue != null && returnValue.getViewName() == null){
             returnValue.setViewName(defaultErrorView);
         }
 

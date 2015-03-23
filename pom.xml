@@ -105,7 +105,6 @@
             <groupId>${jdbc.driver.groupId}</groupId>
             <artifactId>${jdbc.driver.artifactId}</artifactId>
             <version>${jdbc.driver.version}</version>
-            <scope>runtime</scope>
         </dependency>
         <!-- PERSISTENCE end -->
 
@@ -203,11 +202,7 @@
             <artifactId>log4j</artifactId>
             <version>1.2.16</version>
         </dependency>
-        <dependency>
-            <groupId>log4jdbc</groupId>
-            <artifactId>log4jdbc4</artifactId>
-            <version>1.2</version>
-        </dependency>
+
         <!-- LOGGING end -->
 
         <!-- GENERAL UTILS begin -->

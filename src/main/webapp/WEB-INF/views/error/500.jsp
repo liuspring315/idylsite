@@ -20,7 +20,6 @@
 
 <body>
 <div id="doc">
-    <jsp:include flush="true" page="/WEB-INF/views/include/header.jsp"/>
     <div id="mainbody">
         <div class="grid mt10 fix">
             <jsp:include flush="true" page="/WEB-INF/views/include/menu.jsp"/>

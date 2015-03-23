@@ -9,6 +9,7 @@
 
 package com.idyl.site.dao.account;
 
+import com.idyl.site.dao.BaseDaoImpl;
 import com.idyl.site.dao.BaseSpringJdbcDaoImpl;
 import com.idyl.site.data.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,22 +30,24 @@ import java.util.Map;
  * @version 0.1
  */
 @Component
-public class UserDao extends BaseSpringJdbcDaoImpl {
+public class UserDao extends BaseDaoImpl<CustomerExtra> {
 
     private static String USER_BY_LOGINNAME = "SELECT USER_TYPE userType, USER_NAME as userName, EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB headThumb, " +
-		    "ADD_TIME addTime, BEGIN_TIME beginTime,ID id FROM USER_GENERAL_INFO g, " +
+		    "ADD_TIME addTime, BEGIN_TIME beginTime,ID id FROM user_general_info g, " +
 		    "WHERE user_name = :USER_NAME and password = :PASSWORD";
-	protected static Map<Integer,String> selectExtraSqlMap = new HashMap<Integer, String>();
+	protected static Map<Integer,String>  selectExtraSqlMap = new HashMap<Integer, String>();
 	static {
 		//		1会员
 //		2摄影师
 //		3造型师
 //		4摄影机构管理员
-		selectExtraSqlMap.put(UserTypeEnum.CUSTOMER.getCode(),"SELECT USER_TYPE userType, USER_NAME as userName, EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB headThumb, " +
-				"ADD_TIME addTime, BEGIN_TIME beginTime,ID id," +
-				"user_general_info_id userGeneralInfoId,signature,destination,remark" +
-				" FROM USER_GENERAL_INFO g, customer_extra c" +
-				"WHERE g.user_type = 0 and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD");
+		selectExtraSqlMap.put(UserTypeEnum.CUSTOMER.getCode(),"SELECT USER_TYPE, USER_NAME, EMAIL email, PASSWORD password," +
+				" FAMILY_NAME , LAST_NAME , MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, " +
+				"HEAD_THUMB , " +
+				"ADD_TIME , BEGIN_TIME ,ID id," +
+				"user_general_info_id ,signature,destination,remark" +
+				" FROM user_general_info g, customer_extra c " +
+				"WHERE g.user_type = 1 and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD");
 		selectExtraSqlMap.put(UserTypeEnum.PHOTOGRAPHER.getCode(),"SELECT USER_TYPE userType, USER_NAME as userName, EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB headThumb, " +
 				"ADD_TIME addTime, BEGIN_TIME beginTime,ID id," +
 				"user_general_info_id userGeneralInfoId," +
@@ -57,8 +60,8 @@ public class UserDao extends BaseSpringJdbcDaoImpl {
 				"deposit,\n" +
 				"remark,\n" +
 				"register_check_state registerCheckState" +
-				" FROM USER_GENERAL_INFO g, photographer_extra c" +
-				"WHERE g.user_type = 1 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD");
+				" FROM user_general_info g, photographer_extra c " +
+				"WHERE g.user_type = 2 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD");
 		selectExtraSqlMap.put(UserTypeEnum.STYLIST.getCode(),"SELECT USER_TYPE userType, USER_NAME as userName, EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB headThumb, " +
 				"ADD_TIME addTime, BEGIN_TIME beginTime,ID id," +
 				"user_general_info_id userGeneralInfoId,introduction,\n" +
@@ -70,8 +73,8 @@ public class UserDao extends BaseSpringJdbcDaoImpl {
 				"deposit,\n" +
 				"remark,\n" +
 				"register_check_state registerCheckState" +
-				" FROM USER_GENERAL_INFO g, stylist_extra c" +
-				"WHERE g.user_type = 2 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD");
+				" FROM user_general_info g, stylist_extra c " +
+				"WHERE g.user_type = 3 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD");
 		selectExtraSqlMap.put(UserTypeEnum.AGENCY.getCode(),"SELECT USER_TYPE userType, USER_NAME as userName, EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB headThumb, " +
 				"ADD_TIME addTime, BEGIN_TIME beginTime,ID id," +
 				"user_general_info_id userGeneralInfoId,authentication,\n" +
@@ -87,11 +90,15 @@ public class UserDao extends BaseSpringJdbcDaoImpl {
 				"dress_desc dressDesc,\n" +
 				"address,\n" +
 				"register_check_state registerCheckState" +
-				" FROM USER_GENERAL_INFO g, agency_extra c" +
-				"WHERE g.user_type = 3 and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD");
+				" FROM user_general_info g, agency_extra c " +
+				"WHERE g.user_type = 4 and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD");
 	}
 
-	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+	UserDao() {
+		super();
+	}
+
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -134,11 +141,22 @@ public class UserDao extends BaseSpringJdbcDaoImpl {
 		return null;
 	}
 
+//	public CustomerExtra findByLoginName(String loginName,String password){
+//		Map map=new HashMap();
+//		map.put("USER_NAME", loginName);
+//		map.put("PASSWORD", password);
+//		List<CustomerExtra> list = namedParameterJdbcTemplate.queryForList(selectExtraSqlMap.get(UserTypeEnum.CUSTOMER.getCode()), map, CustomerExtra.class);
+//		if(list != null && list.size() > 0){
+//			return list.get(0);
+//		}
+//		return null;
+//	}
+
 	public CustomerExtra findByLoginName(String loginName,String password){
 		Map map=new HashMap();
 		map.put("USER_NAME", loginName);
 		map.put("PASSWORD", password);
-		List<CustomerExtra> list = namedParameterJdbcTemplate.queryForList(selectExtraSqlMap.get(UserTypeEnum.CUSTOMER.getCode()), map,CustomerExtra.class);
+		List<CustomerExtra> list = executeRawSql(selectExtraSqlMap.get(UserTypeEnum.CUSTOMER.getCode()),map);
 		if(list != null && list.size() > 0){
 			return list.get(0);
 		}

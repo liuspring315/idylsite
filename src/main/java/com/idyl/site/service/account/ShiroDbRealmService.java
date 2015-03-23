@@ -43,7 +43,7 @@ public class ShiroDbRealmService extends AuthorizingRealm {
             throw new AccountException("用户名不能为空");
         }
 	    String[] arrStr = username.split(",");
-	    Integer userType = Integer.parseInt(arrStr[1]);
+	    Integer userType = Integer.parseInt(arrStr[0]);
 	    AccountService accountService = (AccountService) SpringContextUtil.getBean(UserTypeEnum.getUserTypeEnum(userType).getDaoClassName());
 
 	    UserGeneralInfo user = accountService.findByLoginName(username,password);

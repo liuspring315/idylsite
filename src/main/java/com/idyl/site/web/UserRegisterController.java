@@ -24,7 +24,7 @@ public class UserRegisterController {
 	private UserRegisterService userRegisterService;
 
 	@RequestMapping(value="register",method = RequestMethod.GET)
-	public String index(Model model){
+	public String index(@ModelAttribute UserGeneralInfo userGeneralInfo,Model model){
 		return "user/user_register";
 	}
 	@RequestMapping(value="register",method = RequestMethod.POST)

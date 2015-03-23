@@ -1,67 +1,76 @@
 package com.idyl.site.data;
 
+import javax.persistence.Column;
+import javax.persistence.Table;
+
 /**
- * Created by spring on 15-3-17.
+ * CustomerExtra entity. @author MyEclipse Persistence Tools
  */
-public class CustomerExtra  extends UserGeneralInfo{
-	private int userGeneralInfoId;
+@Table(name = "customer_extra")
+public class CustomerExtra extends UserGeneralInfo implements java.io.Serializable {
+
+	// Fields
+
+	private Integer userGeneralInfoId;
 	private String signature;
 	private String destination;
 	private String remark;
 
-	public int getUserGeneralInfoId() {
-		return userGeneralInfoId;
+	// Constructors
+
+	/** default constructor */
+	public CustomerExtra() {
 	}
 
-	public void setUserGeneralInfoId(int userGeneralInfoId) {
+	/** minimal constructor */
+	public CustomerExtra(Integer userGeneralInfoId) {
 		this.userGeneralInfoId = userGeneralInfoId;
 	}
 
+	/** full constructor */
+	public CustomerExtra(Integer userGeneralInfoId, String signature,
+			String destination, String remark) {
+		this.userGeneralInfoId = userGeneralInfoId;
+		this.signature = signature;
+		this.destination = destination;
+		this.remark = remark;
+	}
+
+	// Property accessors
+	@Column(name = "user_general_info_id")
+	public Integer getUserGeneralInfoId() {
+		return this.userGeneralInfoId;
+	}
+
+	public void setUserGeneralInfoId(Integer userGeneralInfoId) {
+		this.userGeneralInfoId = userGeneralInfoId;
+	}
+
+	@Column(name = "signature")
 	public String getSignature() {
-		return signature;
+		return this.signature;
 	}
 
 	public void setSignature(String signature) {
 		this.signature = signature;
 	}
 
+	@Column(name = "destination")
 	public String getDestination() {
-		return destination;
+		return this.destination;
 	}
 
 	public void setDestination(String destination) {
 		this.destination = destination;
 	}
 
+	@Column(name = "remark")
 	public String getRemark() {
-		return remark;
+		return this.remark;
 	}
 
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		CustomerExtra that = (CustomerExtra) o;
-
-		if (userGeneralInfoId != that.userGeneralInfoId) return false;
-		if (destination != null ? !destination.equals(that.destination) : that.destination != null) return false;
-		if (remark != null ? !remark.equals(that.remark) : that.remark != null) return false;
-		if (signature != null ? !signature.equals(that.signature) : that.signature != null) return false;
-
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		int result = userGeneralInfoId;
-		result = 31 * result + (signature != null ? signature.hashCode() : 0);
-		result = 31 * result + (destination != null ? destination.hashCode() : 0);
-		result = 31 * result + (remark != null ? remark.hashCode() : 0);
-		return result;
-	}
 }

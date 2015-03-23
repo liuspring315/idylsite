@@ -1,30 +1,22 @@
 package com.idyl.site.data;
 
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.sql.Date;
+import javax.persistence.Column;
+import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
- * Created by spring on 15-3-17.
+ * UserGeneralInfo entity. @author MyEclipse Persistence Tools
  */
-public class UserGeneralInfo {
-	private int id;
+@Table(name = "user_general_info")
+public class UserGeneralInfo implements java.io.Serializable {
+
+	// Fields
+
+	private Integer id;
 	private Integer userType;
-	@NotNull(message = "用户名不能为空")
-	@Length(min=5, max=20, message="用户名长度必须在5-20之间")
-	@Pattern(regexp = "^[a-zA-Z_]\\w{4,19}$", message = "用户名必须以字母下划线开头，可由字母数字下划线组成")
 	private String userName;
-	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
-			+"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
-			+"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-			message="请输入正确的电子邮箱")
-	@NotNull(message="电子邮箱不能为空")
 	private String email;
-	@NotNull(message="密码不能为空")
-//	@Pattern(regexp="S{6,30}",message="密码长度必须6-30之间")
 	private String password;
 	private String familyName;
 	private String lastName;
@@ -36,11 +28,24 @@ public class UserGeneralInfo {
 	private Timestamp addTime;
 	private Timestamp beginTime;
 
+	// Constructors
+
+	/** default constructor */
 	public UserGeneralInfo() {
 	}
 
-	public UserGeneralInfo(int id, Integer userType, String userName, String email, String password, String familyName, String lastName, String mobile, String telephone, Integer location, Date birthday, String headThumb, Timestamp addTime, Timestamp beginTime) {
-		this.id = id;
+	/** minimal constructor */
+	public UserGeneralInfo(String userName, String email, String password) {
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+	}
+
+	/** full constructor */
+	public UserGeneralInfo(Integer userType, String userName, String email,
+			String password, String familyName, String lastName, String mobile,
+			String telephone, Integer location, Date birthday,
+			String headThumb, Timestamp addTime, Timestamp beginTime) {
 		this.userType = userType;
 		this.userName = userName;
 		this.email = email;
@@ -56,159 +61,131 @@ public class UserGeneralInfo {
 		this.beginTime = beginTime;
 	}
 
-	public int getId() {
-		return id;
+	// Property accessors
+	@Column(name = "id")
+	public Integer getId() {
+		return this.id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	@Column(name = "user_type")
 	public Integer getUserType() {
-		return userType;
+		return this.userType;
 	}
 
 	public void setUserType(Integer userType) {
 		this.userType = userType;
 	}
 
+	@Column(name = "user_name")
 	public String getUserName() {
-		return userName;
+		return this.userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+	@Column(name = "email")
 	public String getEmail() {
-		return email;
+		return this.email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	@Column(name = "password")
 	public String getPassword() {
-		return password;
+		return this.password;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	@Column(name = "family_name")
 	public String getFamilyName() {
-		return familyName;
+		return this.familyName;
 	}
 
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
 	}
 
+	@Column(name = "last_name")
 	public String getLastName() {
-		return lastName;
+		return this.lastName;
 	}
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
+	@Column(name = "mobile")
 	public String getMobile() {
-		return mobile;
+		return this.mobile;
 	}
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
 
+	@Column(name = "telephone")
 	public String getTelephone() {
-		return telephone;
+		return this.telephone;
 	}
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
+	@Column(name = "location")
 	public Integer getLocation() {
-		return location;
+		return this.location;
 	}
 
 	public void setLocation(Integer location) {
 		this.location = location;
 	}
 
+	@Column(name = "birthday")
 	public Date getBirthday() {
-		return birthday;
+		return this.birthday;
 	}
 
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
+	@Column(name = "head_thumb")
 	public String getHeadThumb() {
-		return headThumb;
+		return this.headThumb;
 	}
 
 	public void setHeadThumb(String headThumb) {
 		this.headThumb = headThumb;
 	}
 
+	@Column(name = "add_time")
 	public Timestamp getAddTime() {
-		return addTime;
+		return this.addTime;
 	}
 
 	public void setAddTime(Timestamp addTime) {
 		this.addTime = addTime;
 	}
 
+	@Column(name = "begin_time")
 	public Timestamp getBeginTime() {
-		return beginTime;
+		return this.beginTime;
 	}
 
 	public void setBeginTime(Timestamp beginTime) {
 		this.beginTime = beginTime;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		UserGeneralInfo that = (UserGeneralInfo) o;
-
-		if (id != that.id) return false;
-		if (addTime != null ? !addTime.equals(that.addTime) : that.addTime != null) return false;
-		if (beginTime != null ? !beginTime.equals(that.beginTime) : that.beginTime != null) return false;
-		if (birthday != null ? !birthday.equals(that.birthday) : that.birthday != null) return false;
-		if (email != null ? !email.equals(that.email) : that.email != null) return false;
-		if (familyName != null ? !familyName.equals(that.familyName) : that.familyName != null) return false;
-		if (headThumb != null ? !headThumb.equals(that.headThumb) : that.headThumb != null) return false;
-		if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-		if (location != null ? !location.equals(that.location) : that.location != null) return false;
-		if (mobile != null ? !mobile.equals(that.mobile) : that.mobile != null) return false;
-		if (password != null ? !password.equals(that.password) : that.password != null) return false;
-		if (telephone != null ? !telephone.equals(that.telephone) : that.telephone != null) return false;
-		if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
-		if (userType != null ? !userType.equals(that.userType) : that.userType != null) return false;
-
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		int result = id;
-		result = 31 * result + (userType != null ? userType.hashCode() : 0);
-		result = 31 * result + (userName != null ? userName.hashCode() : 0);
-		result = 31 * result + (email != null ? email.hashCode() : 0);
-		result = 31 * result + (password != null ? password.hashCode() : 0);
-		result = 31 * result + (familyName != null ? familyName.hashCode() : 0);
-		result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-		result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
-		result = 31 * result + (telephone != null ? telephone.hashCode() : 0);
-		result = 31 * result + (location != null ? location.hashCode() : 0);
-		result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
-		result = 31 * result + (headThumb != null ? headThumb.hashCode() : 0);
-		result = 31 * result + (addTime != null ? addTime.hashCode() : 0);
-		result = 31 * result + (beginTime != null ? beginTime.hashCode() : 0);
-		return result;
-	}
 }
