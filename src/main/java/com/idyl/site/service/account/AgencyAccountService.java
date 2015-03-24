@@ -1,5 +1,6 @@
 package com.idyl.site.service.account;
 
+import com.idyl.site.dao.account.AgencyUserDao;
 import com.idyl.site.dao.account.UserDao;
 import com.idyl.site.data.*;
 import com.idyl.site.util.MD5Builder;
@@ -22,13 +23,13 @@ import java.util.Map;
 @Transactional(readOnly = true)
 public class  AgencyAccountService implements AccountService{
     @Autowired
-    protected UserDao userDao;
+    protected AgencyUserDao userDao;
 
 
 
     public UserGeneralInfo findByLoginName(String loginName,String password) {
 	    String[] arrStr = loginName.split(",");
-	    UserGeneralInfo agencyExtra = userDao.findAgencyExtraByLoginName(arrStr[1], MD5Builder.getMD5(password));
+	    UserGeneralInfo agencyExtra = userDao.findByLoginName(arrStr[1], MD5Builder.getMD5(password));
 		return agencyExtra;
     }
 

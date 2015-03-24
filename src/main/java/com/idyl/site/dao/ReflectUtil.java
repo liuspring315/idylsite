@@ -8,8 +8,6 @@ import java.lang.reflect.Field;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.persistence.Column;
-
 import com.alibaba.fastjson.JSON;
 
 
@@ -65,8 +63,8 @@ public class ReflectUtil {
 	}
 
 	public  static String getTable(Class<?> clazz){
-		String name=clazz.getSimpleName();
-		return name.substring(0,name.length()-2).toUpperCase();
+		Table t =clazz.getAnnotation(Table.class);
+		return t.name().toUpperCase();
 	}
 
 

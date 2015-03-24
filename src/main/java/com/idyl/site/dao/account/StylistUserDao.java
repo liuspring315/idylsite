@@ -29,10 +29,26 @@ import java.util.Map;
  * @author  liuzhaocun
  * @version 0.1
  */
+@Component
+public class StylistUserDao extends BaseDaoImpl<StylistExtra> {
 
-public interface UserDao  {
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+	}
 
-    public UserGeneralInfo findByLoginName(String loginName,String password);
+
+	public StylistExtra findByLoginName(String loginName,String password){
+		Map map=new HashMap();
+		map.put("USER_NAME", loginName);
+		map.put("PASSWORD", password);
+		List<StylistExtra> list = executeRawSql(UserTypeEnum.STYLIST.getLoginSql(), map);
+		if (list != null && list.size() > 0){
+			return list.get(0);
+		}
+		return null;
+	}
 
 
 }

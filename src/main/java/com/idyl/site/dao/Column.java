@@ -1,4 +1,4 @@
-package javax.persistence;
+package com.idyl.site.dao;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,9 +8,9 @@ import java.lang.annotation.Target;
 /**
  * Created by spring on 15-3-23.
  */
-@Target(ElementType.TYPE)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Table {
+public @interface Column {
 
 	String name() default "";
 

@@ -13,8 +13,6 @@ import java.util.HashMap;
 import com.idyl.site.dao.interceptor.UpdateFactory;
 import org.springframework.jdbc.core.RowMapper;
 
-import javax.persistence.Column;
-
 /**
  * 使用包cglib和asm来创建对某一对象setters方法的拦截器
  *
@@ -35,7 +33,7 @@ public class ModelRowMapper<T> implements RowMapper {
 	// RowMapper中直接通过field给字段设值，避免干扰set拦截器的使用
 	public static Object setValues(HashMap<String, Object> map, Object entity) {
 		try {
-			Field[] fields = entity.getClass().getGenericSuperclass().getClass().getDeclaredFields();
+			Field[] fields = entity.getClass().getSuperclass().getDeclaredFields();;
 			for (Field field : fields) {
 				PropertyDescriptor pd = new PropertyDescriptor(field.getName(),
 						entity.getClass());
@@ -84,7 +82,7 @@ public class ModelRowMapper<T> implements RowMapper {
 	public void setValues(ResultSet rs, Object entity) {
 
 		try {
-			Field[] fields = clazz.getGenericSuperclass().getClass().getDeclaredFields();
+			Field[] fields = clazz.getSuperclass().getDeclaredFields();
 			for (Field field : fields) {
 				PropertyDescriptor pd = new PropertyDescriptor(field.getName(),
 						entity.getClass());

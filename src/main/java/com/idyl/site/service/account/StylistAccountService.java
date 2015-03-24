@@ -1,5 +1,6 @@
 package com.idyl.site.service.account;
 
+import com.idyl.site.dao.account.StylistUserDao;
 import com.idyl.site.dao.account.UserDao;
 import com.idyl.site.data.*;
 import com.idyl.site.util.MD5Builder;
@@ -22,12 +23,12 @@ import java.util.Map;
 @Transactional(readOnly = true)
 public class   StylistAccountService implements AccountService{
     @Autowired
-    protected UserDao userDao;
+    protected StylistUserDao userDao;
 
 
 	public UserGeneralInfo findByLoginName(String loginName,String password) {
 		String[] arrStr = loginName.split(",");
-		StylistExtra stylistExtra = userDao.findStylistExtraExtraByLoginName(arrStr[1], MD5Builder.getMD5(password));
+		StylistExtra stylistExtra = userDao.findByLoginName(arrStr[1], MD5Builder.getMD5(password));
 		return stylistExtra;
 	}
 

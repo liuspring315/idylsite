@@ -21,15 +21,15 @@ public class MainController extends  BaseController{
     public String main(HttpServletRequest request){
 	    UserGeneralInfo user = super.getCurrUser(request);
 	    if(user.getUserType()== UserTypeEnum.CUSTOMER.getCode()) {
-		    return "main";
+		    return "redirect:/main";
 	    }else if(user.getUserType()== UserTypeEnum.PHOTOGRAPHER.getCode()) {
-		    return "main";
+		    return "redirect:/manager/photographer/main";
 	    }else if(user.getUserType()== UserTypeEnum.STYLIST.getCode()) {
-		    return "main";
+		    return "redirect:/manager/stylist/main";
 	    }else if(user.getUserType()== UserTypeEnum.AGENCY.getCode()) {
-		    return "main";
+		    return "redirect:/manager/agency/main";
 	    }else {
-		    return "main";
+		    return "redirect:/main";
 	    }
 
     }

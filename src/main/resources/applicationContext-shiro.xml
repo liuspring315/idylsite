@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
        default-lazy-init="true">
 
     <description>Shiro Configuration</description>
@@ -34,29 +35,25 @@
         <property name="loginUrl" value="/login" />
         <!-- 登陆成功后要跳转的连接 -->
         <property name="successUrl" value="/main" />
-        <!-- 未认证时要跳转的连接 -->
-        <!--<property name="unauthorizedUrl" value="/login.ht" />-->
+        <property name="filters">
+            <util:map>
+                <!-- 添加casFilter到shiroFilter -->
+                <entry key="loginFilter" value-ref="loginFilter"/>
+            </util:map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
-
-                /login = anon
-                /main = anon
-                /photoer/register=anon
-                /server/register=anon
-                /agency/register=anon
-                /user/register=anon
-                /stylist/register=anon
                 /logout = logout
-
                 /resources/** = anon
                 /favicon.ico = anon
                 /captcha-image=anon
 
-                /** = user
+                /manager/** = user,loginFilter
             </value>
         </property>
     </bean>
-
+    <bean id="loginFilter" class="com.idyl.site.web.listener.LoginFilter">
+    </bean>
     <!-- 用户授权信息Cache -->
     <bean id="shiroCacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
 

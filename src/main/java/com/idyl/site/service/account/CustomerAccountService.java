@@ -1,5 +1,6 @@
 package com.idyl.site.service.account;
 
+import com.idyl.site.dao.account.CustomerUserDao;
 import com.idyl.site.dao.account.UserDao;
 import com.idyl.site.data.*;
 import com.idyl.site.util.MD5Builder;
@@ -22,7 +23,7 @@ import java.util.Map;
 @Transactional(readOnly = true)
 public class  CustomerAccountService implements AccountService{
     @Autowired
-    protected UserDao userDao;
+    protected CustomerUserDao userDao;
 
 	public UserGeneralInfo findByLoginName(String loginName,String password) {
 		String[] arrStr = loginName.split(",");

@@ -29,10 +29,27 @@ import java.util.Map;
  * @author  liuzhaocun
  * @version 0.1
  */
+@Component
+public class PhotographerUserDao extends BaseDaoImpl<PhotographerExtra> {
 
-public interface UserDao  {
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+	}
 
-    public UserGeneralInfo findByLoginName(String loginName,String password);
+
+	public PhotographerExtra findByLoginName(String loginName,String password){
+		Map map=new HashMap();
+		map.put("USER_NAME", loginName);
+		map.put("PASSWORD", password);
+		List<PhotographerExtra> list = executeRawSql(UserTypeEnum.PHOTOGRAPHER.getLoginSql(), map);
+		if (list != null && list.size() > 0){
+			return list.get(0);
+		}
+		return null;
+	}
+
 
 
 }

@@ -1,7 +1,9 @@
 package com.idyl.site.data;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import com.idyl.site.dao.Column;
+import com.idyl.site.dao.Table;
+
+import java.util.Arrays;
 
 /**
  * CustomerExtra entity. @author MyEclipse Persistence Tools
@@ -73,4 +75,10 @@ public class CustomerExtra extends UserGeneralInfo implements java.io.Serializab
 		this.remark = remark;
 	}
 
+
+	public static void main(String[] args) {
+
+		System.out.println(Arrays.toString(new CustomerExtra().getClass().getSuperclass().getDeclaredFields()));
+
+	}
 }

@@ -9,10 +9,63 @@ public enum UserTypeEnum {
 //		2摄影师
 //		3造型师
 //		4摄影机构管理员
-	CUSTOMER("会员",1,"customerAccountService"),
-	PHOTOGRAPHER("摄影师",2,"photographerAccountService"),
-	STYLIST("造型师",3,"stylistAccountService"),
-	AGENCY("摄影机构管理员",4,"agencyAccountService")
+	CUSTOMER("会员",1,"customerAccountService","SELECT USER_TYPE, USER_NAME, EMAIL email, PASSWORD password," +
+			" FAMILY_NAME , LAST_NAME , MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, " +
+			"HEAD_THUMB , " +
+			"ADD_TIME , BEGIN_TIME ,ID id," +
+			"user_general_info_id ,signature,destination,remark" +
+			" FROM user_general_info g, customer_extra c " +
+			"WHERE g.user_type = 1 and begin_time < now() and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD"),
+	PHOTOGRAPHER("摄影师",2,"photographerAccountService",
+			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME ," +
+					" MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
+			"ADD_TIME , BEGIN_TIME ,ID id," +
+			"user_general_info_id ," +
+			"introduction,\n" +
+			"authentication,\n" +
+			"certificate_type ,\n" +
+			"certificate_num ,\n" +
+			"idcard_front ,\n" +
+			"idcard_back ,\n" +
+			"deposit,\n" +
+			"remark,\n" +
+			"register_check_state " +
+			" FROM user_general_info g, photographer_extra c " +
+			"WHERE g.user_type = 2 and begin_time < now()  and register_check_state = 2 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
+	STYLIST("造型师",3,"stylistAccountService",
+			"SELECT USER_TYPE , USER_NAME, EMAIL email, PASSWORD password, FAMILY_NAME , LAST_NAME , MOBILE mobile," +
+					" TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
+			"ADD_TIME , BEGIN_TIME ,ID id," +
+			"user_general_info_id ,introduction,\n" +
+			"authentication,\n" +
+			"certificate_type ,\n" +
+			"certificate_num ,\n" +
+			"idcard_front ,\n" +
+			"idcard_back ,\n" +
+			"deposit,\n" +
+			"remark,\n" +
+			"register_check_state " +
+			" FROM user_general_info g, stylist_extra c " +
+			"WHERE g.user_type = 3 and begin_time < now()  and register_check_state = 2 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
+	AGENCY("摄影机构管理员",4,"agencyAccountService",
+			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME , " +
+					"LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
+			"ADD_TIME , BEGIN_TIME ,ID id," +
+			"user_general_info_id ,authentication,\n" +
+			"certificate_type ,\n" +
+			"certificate_num ,\n" +
+			"idcard_front ,\n" +
+			"idcard_back ,\n" +
+			"remark,\n" +
+			"deposit,\n" +
+			"introduction,\n" +
+			"photographer_desc ,\n" +
+			"stylist_desc ,\n" +
+			"dress_desc ,\n" +
+			"address,\n" +
+			"register_check_state " +
+			" FROM user_general_info g, agency_extra c " +
+			"WHERE g.user_type = 4 and begin_time < now() and register_check_state = 2 and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD")
 			;
 	//资源编码
 	private Integer code;
@@ -21,10 +74,13 @@ public enum UserTypeEnum {
 
 	private String daoClassName;
 
-	private UserTypeEnum(String name, Integer code,String daoClassName) {
+	private String loginSql;
+
+	private UserTypeEnum(String name, Integer code,String daoClassName,String loginSql) {
 		this.code = code;
 		this.name = name;
 		this.daoClassName = daoClassName;
+		this.loginSql = loginSql;
 	}
 	public static UserTypeEnum getUserTypeEnum(Integer code) {
 		for (UserTypeEnum c : UserTypeEnum.values()) {
@@ -58,5 +114,13 @@ public enum UserTypeEnum {
 
 	public void setDaoClassName(String daoClassName) {
 		this.daoClassName = daoClassName;
+	}
+
+	public String getLoginSql() {
+		return loginSql;
+	}
+
+	public void setLoginSql(String loginSql) {
+		this.loginSql = loginSql;
 	}
 }

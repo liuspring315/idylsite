@@ -51,7 +51,7 @@ public class ShiroDbRealmService extends AuthorizingRealm {
         if (user == null) {
             throw new UnknownAccountException("用户不存在");
         }
-        return new SimpleAuthenticationInfo(user,username,NAME);
+        return new SimpleAuthenticationInfo(user,password,NAME);
 
     }
 
@@ -105,7 +105,7 @@ public class ShiroDbRealmService extends AuthorizingRealm {
 
         Subject subject = SecurityUtils.getSubject();
 
-        if (subject != null && subject.getPrincipal() != null && subject.getPrincipal() instanceof Map) {
+        if (subject != null && subject.getPrincipal() != null && subject.getPrincipal() instanceof UserGeneralInfo) {
             return (UserGeneralInfo) subject.getPrincipal();
         }
 

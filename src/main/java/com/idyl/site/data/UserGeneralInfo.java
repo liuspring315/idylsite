@@ -1,7 +1,7 @@
 package com.idyl.site.data;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import com.idyl.site.dao.Column;
+import com.idyl.site.dao.Table;
 import java.sql.Timestamp;
 import java.util.Date;
 

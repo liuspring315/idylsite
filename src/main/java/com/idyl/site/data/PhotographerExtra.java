@@ -1,7 +1,7 @@
 package com.idyl.site.data;
 
-import javax.persistence.Column;
-import javax.persistence.Table;
+import com.idyl.site.dao.Column;
+import com.idyl.site.dao.Table;
 
 /**
  * PhotographerExtra entity. @author MyEclipse Persistence Tools
