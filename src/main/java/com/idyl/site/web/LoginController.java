@@ -32,6 +32,12 @@ public class LoginController  {
 	    currentUser.logout();
 	    return "login";
     }
+	@RequestMapping(value = "/alogin", method = RequestMethod.GET)
+	public String alogin() {
+		Subject currentUser = SecurityUtils.getSubject();
+		currentUser.logout();
+		return "alogin";
+	}
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("userName") String username,
@@ -65,22 +71,20 @@ public class LoginController  {
         try {
             currentUser.login(token);
             result = "redirect:/index";
+	        return result;
         } catch (UnknownAccountException uae) {
             model.addAttribute("message","用户不存在");
-            result = "login";
         } catch (IncorrectCredentialsException ice) {
             model.addAttribute("message","用户不存在");
-            result = "login";
         } catch (LockedAccountException lae) {
             model.addAttribute("message","用户不存在");
-            result = "login";
         } catch (AuthenticationException ae) {
             model.addAttribute("message","用户不存在");
-            result = "login";
         }catch (Exception ae) {
             model.addAttribute("message","用户不存在");
-            result = "login";
         }
+
+	    result = (userType==1?"":"a")+"login";
         return result;
     }
 
@@ -88,7 +92,7 @@ public class LoginController  {
     public String logout() {
 
         Subject currentUser = SecurityUtils.getSubject();
-        String result = "login";
+        String result = "main";
         currentUser.logout();
         return result;
     }

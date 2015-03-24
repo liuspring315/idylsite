@@ -21,7 +21,7 @@ import java.util.Map;
 @Component("photographerAccountService")
 //默认将类中的所有public函数纳入事务管理.
 @Transactional(readOnly = true)
-public class   PhotographerAccountService {
+public class   PhotographerAccountService implements AccountService {
     @Autowired
     protected PhotographerUserDao userDao;
 

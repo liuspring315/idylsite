@@ -32,6 +32,8 @@
     <mvc:resources mapping="/resources/css/**" location="/WEB-INF/static/css/"/>
     <mvc:resources mapping="/resources/img/**" location="/WEB-INF/static/img/"/>
 
+    <mvc:resources mapping="/resources/manager/js/**" location="/WEB-INF/static/manager/js/"/>
+    <mvc:resources mapping="/resources/manager/css/**" location="/WEB-INF/static/manager/css/"/>
     <mvc:resources mapping="/resources/manager/bootstrap/**" location="/WEB-INF/static/manager/bootstrap/"/>
     <mvc:resources mapping="/resources/manager/font-awesome/**" location="/WEB-INF/static/manager/font-awesome/"/>
     <mvc:resources mapping="/resources/manager/ionicons/**" location="/WEB-INF/static/manager/ionicons/"/>

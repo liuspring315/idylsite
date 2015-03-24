@@ -17,7 +17,7 @@ public enum UserTypeEnum {
 			" FROM user_general_info g, customer_extra c " +
 			"WHERE g.user_type = 1 and begin_time < now() and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD"),
 	PHOTOGRAPHER("摄影师",2,"photographerAccountService",
-			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME familyName, LAST_NAME ," +
+			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME, LAST_NAME ," +
 					" MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
 			"ADD_TIME , BEGIN_TIME ,ID id," +
 			"user_general_info_id ," +
