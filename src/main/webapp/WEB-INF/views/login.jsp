@@ -25,10 +25,9 @@
     <div class="row">
         <div class="col-lg-6 col-md-offset-3 text-center">
             <form action="${ctx}/login" method="post">
-                <input type="hidden" name="userType" value="1"/>
                 <jsp:include page="/WEB-INF/views/include/message.jsp"/>
                 <div class="form-group has-feedback">
-                    <input type="text" name="userName" id="userName" class="form-control" placeholder="手机&nbsp;&frasl;用户名&nbsp;&frasl;邮箱">
+                    <input type="text" name="userName" id="userName" class="form-control" placeholder="用户名">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">

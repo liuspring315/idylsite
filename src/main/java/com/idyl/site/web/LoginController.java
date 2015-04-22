@@ -41,19 +41,18 @@ public class LoginController  {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("userName") String username,
-                        @RequestParam("userType") int userType,
                         @RequestParam("password") String password,Model model,String rememberMe,
                         HttpServletRequest request,HttpSession session) {
 
         Subject currentUser = SecurityUtils.getSubject();
         String result = "login";
         if (!currentUser.isAuthenticated()) {
-            result = login(currentUser,username,password,model,rememberMe,userType);
+            result = login(currentUser,username,password,model,rememberMe);
         }else{//重复登录
 	        UserGeneralInfo user = (UserGeneralInfo) currentUser.getPrincipal();
             if(!user.getUserName().toString().equalsIgnoreCase(username)){//如果登录名不同
                 currentUser.logout();
-                result = login(currentUser,username,password,model,rememberMe,userType);
+                result = login(currentUser,username,password,model,rememberMe);
             }else{
                 result = "redirect:/index";
             }
@@ -64,9 +63,9 @@ public class LoginController  {
     }
 
     private String login(Subject currentUser,String username,String password,
-                         Model model,String rememberMe,int userType){
+                         Model model,String rememberMe){
         String result = "login";
-        UsernamePasswordToken token = new UsernamePasswordToken(userType+","+username, password);
+        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         token.setRememberMe("1".equals(rememberMe));
         try {
             currentUser.login(token);
@@ -84,7 +83,7 @@ public class LoginController  {
             model.addAttribute("message","用户不存在");
         }
 
-	    result = (userType==1?"":"a")+"login";
+	    result = "login";
         return result;
     }
 

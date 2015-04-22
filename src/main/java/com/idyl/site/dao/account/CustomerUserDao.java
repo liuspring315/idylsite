@@ -18,6 +18,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,16 @@ public class CustomerUserDao extends BaseDaoImpl<CustomerExtra> {
 			return list.get(0);
 		}
 		return null;
+	}
+
+
+	public int getUserTypeByUserName(String userName){
+		List<Map<String,Object>> list = jdbcTemplate.queryForList("select user_type from user_general_info where USER_NAME = ?", userName);
+		if(!list.isEmpty()){
+			return ((BigDecimal)list.get(0).get("user_type")).intValue();
+		}
+		return 1;
+
 	}
 
 

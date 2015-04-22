@@ -1,5 +1,6 @@
 package com.idyl.site.service.account;
 
+import com.idyl.site.dao.account.CustomerUserDao;
 import com.idyl.site.data.UserGeneralInfo;
 import com.idyl.site.data.UserTypeEnum;
 import com.idyl.site.service.account.AccountService;
@@ -30,6 +31,8 @@ import java.util.Map;
 public class ShiroDbRealmService extends AuthorizingRealm {
     public static final String NAME = "ShiroDbRealmService";
 
+    @Autowired
+    CustomerUserDao customerUserDao;
 
     /**
      * 认证回调函数, 登录时调用.
@@ -42,8 +45,7 @@ public class ShiroDbRealmService extends AuthorizingRealm {
         if (username == null) {
             throw new AccountException("用户名不能为空");
         }
-	    String[] arrStr = username.split(",");
-	    Integer userType = Integer.parseInt(arrStr[0]);
+	    Integer userType =customerUserDao.getUserTypeByUserName(username);
 	    AccountService accountService = (AccountService) SpringContextUtil.getBean(UserTypeEnum.getUserTypeEnum(userType).getDaoClassName());
 
 	    UserGeneralInfo user = accountService.findByLoginName(username,password);
