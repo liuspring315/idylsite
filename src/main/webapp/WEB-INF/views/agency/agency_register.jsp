@@ -13,7 +13,7 @@
     <ol class="breadcrumb">
         <li><a href="index.html">首页</a></li>
         <li><a href="${ctx}/server/register">加盟入驻</a></li>
-        <li class="active">摄影师注册</li>
+        <li class="active">摄影机构注册</li>
     </ol>
 </div>
 
@@ -28,29 +28,29 @@
     <hr>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <form class="form-horizontal">
+            <form class="form-horizontal"  method="post"  action="${ctx}/agency/register">
                 <div class="form-group">
                     <label for="username" class="col-sm-4 control-label">用户名</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="username" placeholder="可使用英文字符、数字、汉字，最长××字符，必填">
+                        <input type="text" class="form-control" id="userName" name="userName" placeholder="可使用英文字符、数字、汉字，最长××字符，必填">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Email" class="col-sm-4 control-label">电子邮箱</label>
                     <div class="col-sm-5">
-                        <input type="Email" class="form-control" id="Email" placeholder="请填写正确邮箱，进行验证，必填">
+                        <input type="Email" class="form-control" name="email"  id="email"  placeholder="请填写正确邮箱，进行验证，必填">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="Mobile" class="col-sm-4 control-label">移动电话</label>
                     <div class="col-sm-5">
-                        <input type="text" class="form-control" id="Mobile" placeholder="请填写正确手机号码，旅拍者服务专员会与您联系，必填">
+                        <input type="text" class="form-control" name="mobile"  id="mobile" placeholder="请填写正确手机号码，旅拍者服务专员会与您联系，必填">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-4 control-label">密码</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填">
+                        <input type="password" class="form-control" name="password"  id="password"  placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填">
                     </div>
                 </div>
                 <div class="form-group">

@@ -14,7 +14,7 @@
     <ol class="breadcrumb">
         <li><a href="${ctx}/main">首页</a></li>
         <li><a href="${ctx}/server/register">加盟入驻</a></li>
-        <li class="active">摄影师注册</li>
+        <li class="active">造型师注册</li>
     </ol>
 </div>
 <div class="container marketing">
