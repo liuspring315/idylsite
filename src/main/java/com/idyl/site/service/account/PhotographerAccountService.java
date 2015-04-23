@@ -27,8 +27,7 @@ public class   PhotographerAccountService implements AccountService {
 
 
 	public UserGeneralInfo findByLoginName(String loginName,String password) {
-		String[] arrStr = loginName.split(",");
-		PhotographerExtra photographerExtra = userDao.findByLoginName(arrStr[1], MD5Builder.getMD5(password));
+		PhotographerExtra photographerExtra = userDao.findByLoginName(loginName, MD5Builder.getMD5(password));
 		return photographerExtra;
 	}
 

@@ -55,7 +55,7 @@ public class CustomerUserDao extends BaseDaoImpl<CustomerExtra> {
 	public int getUserTypeByUserName(String userName){
 		List<Map<String,Object>> list = jdbcTemplate.queryForList("select user_type from user_general_info where USER_NAME = ?", userName);
 		if(!list.isEmpty()){
-			return ((BigDecimal)list.get(0).get("user_type")).intValue();
+			return ((Integer)list.get(0).get("user_type")).intValue();
 		}
 		return 1;
 

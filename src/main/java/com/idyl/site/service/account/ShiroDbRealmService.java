@@ -1,6 +1,7 @@
 package com.idyl.site.service.account;
 
 import com.idyl.site.dao.account.CustomerUserDao;
+import com.idyl.site.data.RegisterCheckStateEnum;
 import com.idyl.site.data.UserGeneralInfo;
 import com.idyl.site.data.UserTypeEnum;
 import com.idyl.site.service.account.AccountService;
@@ -19,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -52,6 +54,18 @@ public class ShiroDbRealmService extends AuthorizingRealm {
 //
         if (user == null) {
             throw new UnknownAccountException("用户不存在");
+        }else if (user.getUserType() != UserTypeEnum.CUSTOMER.getCode()) {
+            if(user.getRegisterCheckState() == RegisterCheckStateEnum.APPROVE_NO.getCode()){
+                throw new UnknownAccountException("该用户已被否决入驻");
+            }else if(user.getRegisterCheckState() == RegisterCheckStateEnum.WAIT_APPROVE.getCode()){
+                throw new UnknownAccountException("该用户待审核，请联系服务人员");
+            }else if(user.getRegisterCheckState() == RegisterCheckStateEnum.LOCK.getCode()){
+                throw new UnknownAccountException("该用户已被锁定，请联系服务人员");
+            }
+        }
+        if(user.getBeginTime().getTime() > new Date().getTime()){
+
+            throw new UnknownAccountException("该用户已被锁定");
         }
         return new SimpleAuthenticationInfo(user,password,NAME);
 

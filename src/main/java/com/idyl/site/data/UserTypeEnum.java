@@ -15,7 +15,7 @@ public enum UserTypeEnum {
 			"ADD_TIME , BEGIN_TIME ,ID id," +
 			"user_general_info_id ,signature,destination,remark" +
 			" FROM user_general_info g, customer_extra c " +
-			"WHERE g.user_type = 1 and begin_time < now() and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD"),
+			"WHERE g.user_type = 1  and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD"),
 	PHOTOGRAPHER("摄影师",2,"photographerAccountService",
 			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME, LAST_NAME ," +
 					" MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
@@ -31,7 +31,7 @@ public enum UserTypeEnum {
 			"remark,\n" +
 			"register_check_state " +
 			" FROM user_general_info g, photographer_extra c " +
-			"WHERE g.user_type = 2 and begin_time < now()  and register_check_state = 2 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
+			"WHERE g.user_type = 2    and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
 	STYLIST("造型师",3,"stylistAccountService",
 			"SELECT USER_TYPE , USER_NAME, EMAIL email, PASSWORD password, FAMILY_NAME , LAST_NAME , MOBILE mobile," +
 					" TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
@@ -46,7 +46,7 @@ public enum UserTypeEnum {
 			"remark,\n" +
 			"register_check_state " +
 			" FROM user_general_info g, stylist_extra c " +
-			"WHERE g.user_type = 3 and begin_time < now()  and register_check_state = 2 and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
+			"WHERE g.user_type = 3    and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
 	AGENCY("摄影机构管理员",4,"agencyAccountService",
 			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME , " +
 					"LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
@@ -65,7 +65,7 @@ public enum UserTypeEnum {
 			"address,\n" +
 			"register_check_state " +
 			" FROM user_general_info g, agency_extra c " +
-			"WHERE g.user_type = 4 and begin_time < now() and register_check_state = 2 and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD")
+			"WHERE g.user_type = 4   and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD")
 			;
 	//资源编码
 	private Integer code;

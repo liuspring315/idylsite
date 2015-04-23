@@ -27,8 +27,7 @@ public class   StylistAccountService implements AccountService{
 
 
 	public UserGeneralInfo findByLoginName(String loginName,String password) {
-		String[] arrStr = loginName.split(",");
-		StylistExtra stylistExtra = userDao.findByLoginName(arrStr[1], MD5Builder.getMD5(password));
+		StylistExtra stylistExtra = userDao.findByLoginName(loginName, MD5Builder.getMD5(password));
 		return stylistExtra;
 	}
 

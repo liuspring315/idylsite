@@ -72,13 +72,7 @@ public class LoginController  {
             result = "redirect:/index";
 	        return result;
         } catch (UnknownAccountException uae) {
-            model.addAttribute("message","用户不存在");
-        } catch (IncorrectCredentialsException ice) {
-            model.addAttribute("message","用户不存在");
-        } catch (LockedAccountException lae) {
-            model.addAttribute("message","用户不存在");
-        } catch (AuthenticationException ae) {
-            model.addAttribute("message","用户不存在");
+            model.addAttribute("message",uae.getMessage());
         }catch (Exception ae) {
             model.addAttribute("message","用户不存在");
         }

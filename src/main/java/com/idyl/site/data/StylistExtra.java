@@ -20,7 +20,7 @@ public class StylistExtra extends  UserGeneralInfo implements java.io.Serializab
 	private String idcardBack;
 	private Double deposit;
 	private String remark;
-	private Integer registerCheckState;
+
 
 	// Constructors
 
@@ -37,7 +37,7 @@ public class StylistExtra extends  UserGeneralInfo implements java.io.Serializab
 	public StylistExtra(Integer userGeneralInfoId, String introduction,
 			Integer authentication, Integer certificateType,
 			String certificateNum, String idcardFront, String idcardBack,
-			Double deposit, String remark, Integer registerCheckState) {
+			Double deposit, String remark) {
 		this.userGeneralInfoId = userGeneralInfoId;
 		this.introduction = introduction;
 		this.authentication = authentication;
@@ -47,7 +47,6 @@ public class StylistExtra extends  UserGeneralInfo implements java.io.Serializab
 		this.idcardBack = idcardBack;
 		this.deposit = deposit;
 		this.remark = remark;
-		this.registerCheckState = registerCheckState;
 	}
 
 	// Property accessors
@@ -133,13 +132,5 @@ public class StylistExtra extends  UserGeneralInfo implements java.io.Serializab
 		this.remark = remark;
 	}
 
-	@Column(name = "register_check_state")
-	public Integer getRegisterCheckState() {
-		return this.registerCheckState;
-	}
-
-	public void setRegisterCheckState(Integer registerCheckState) {
-		this.registerCheckState = registerCheckState;
-	}
 
 }

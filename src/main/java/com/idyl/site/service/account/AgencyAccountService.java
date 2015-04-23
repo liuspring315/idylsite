@@ -28,8 +28,7 @@ public class  AgencyAccountService implements AccountService{
 
 
     public UserGeneralInfo findByLoginName(String loginName,String password) {
-	    String[] arrStr = loginName.split(",");
-	    UserGeneralInfo agencyExtra = userDao.findByLoginName(arrStr[1], MD5Builder.getMD5(password));
+	    UserGeneralInfo agencyExtra = userDao.findByLoginName(loginName, MD5Builder.getMD5(password));
 		return agencyExtra;
     }
 

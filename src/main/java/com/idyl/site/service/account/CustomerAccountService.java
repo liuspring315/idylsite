@@ -26,8 +26,7 @@ public class  CustomerAccountService implements AccountService{
     protected CustomerUserDao userDao;
 
 	public UserGeneralInfo findByLoginName(String loginName,String password) {
-		String[] arrStr = loginName.split(",");
-		UserGeneralInfo  customerExtra = userDao.findByLoginName(arrStr[1], MD5Builder.getMD5(password));
+		UserGeneralInfo  customerExtra = userDao.findByLoginName(loginName, MD5Builder.getMD5(password));
 		return customerExtra;
 	}
 

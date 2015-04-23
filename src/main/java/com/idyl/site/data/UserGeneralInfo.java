@@ -27,7 +27,7 @@ public class UserGeneralInfo implements java.io.Serializable {
 	private String headThumb;
 	private Timestamp addTime;
 	private Timestamp beginTime;
-
+	private Integer registerCheckState;
 	// Constructors
 
 	/** default constructor */
@@ -186,6 +186,15 @@ public class UserGeneralInfo implements java.io.Serializable {
 
 	public void setBeginTime(Timestamp beginTime) {
 		this.beginTime = beginTime;
+	}
+
+	@Column(name = "register_check_state")
+	public Integer getRegisterCheckState() {
+		return this.registerCheckState;
+	}
+
+	public void setRegisterCheckState(Integer registerCheckState) {
+		this.registerCheckState = registerCheckState;
 	}
 
 }
