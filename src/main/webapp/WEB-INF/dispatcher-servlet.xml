@@ -38,6 +38,7 @@
     <mvc:resources mapping="/resources/manager/font-awesome/**" location="/WEB-INF/static/manager/font-awesome/"/>
     <mvc:resources mapping="/resources/manager/ionicons/**" location="/WEB-INF/static/manager/ionicons/"/>
     <mvc:resources mapping="/resources/manager/plugins/**" location="/WEB-INF/static/manager/plugins/"/>
+    <mvc:resources mapping="/resources/manager/img/**" location="/WEB-INF/static/manager/img/"/>
 
     <mvc:view-controller path="/error" view-name="error" />
     <mvc:view-controller path="/error/403" view-name="error/403" />
