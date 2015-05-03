@@ -5,7 +5,7 @@
     <%@ include file="/WEB-INF/views/include/manager/meta.jsp" %>
 </head>
   <body class="skin-blue">
-    <div class="wrapper">
+    <div class="wrapper">   
 
       <%@ include file="/WEB-INF/views/include/manager/menu.jsp" %>
       <!-- Right side column. Contains the navbar and content of the page -->
