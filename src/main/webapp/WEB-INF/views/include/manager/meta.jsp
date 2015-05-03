@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/taglibs.jsp" %>
-<title>***后台管理系统</title>
+<title>旅拍者后台管理系统</title>
 <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 <!-- Bootstrap 3.3.2 -->
 <link href="${resourceUrl}/manager/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />

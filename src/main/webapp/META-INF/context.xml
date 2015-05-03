@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="cg-sign" debug="0" reloadable="true">
+<Context path="idylsite" debug="0" reloadable="true">
 
     <Resource
 
@@ -9,7 +9,7 @@
 
     type="javax.sql.DataSource"
 
-    password="123456"
+    password="hdm125077408"
 
     driverClassName="net.sf.log4jdbc.DriverSpy"
 
@@ -17,9 +17,9 @@
 
     maxWait="100000"
 
-    username="root"
+    username="hdm125077408"
 
-    url="jdbc:log4jdbc:mysql://localhost:3306/idyl"
+    url="jdbc:log4jdbc:mysql://hdm125077408.my3w.com:3306/hdm125077408_db"
 
     maxActive="20"/>
 </Context>
