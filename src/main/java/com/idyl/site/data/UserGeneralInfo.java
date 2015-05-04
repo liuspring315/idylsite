@@ -1,7 +1,12 @@
 package com.idyl.site.data;
 
+
 import com.idyl.site.dao.Column;
 import com.idyl.site.dao.Table;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -15,8 +20,18 @@ public class UserGeneralInfo implements java.io.Serializable {
 
 	private Integer id;
 	private Integer userType;
+	private String userTypeName;
+	@NotNull(message = "用户名不能为空")
+	@Length(min=5, max=20, message="用户名长度必须在5-20之间")
+	@Pattern(regexp = "^[a-zA-Z_]\\w{4,19}$", message = "用户名必须以字母下划线开头，可由字母数字下划线组成")
 	private String userName;
+	@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\."
+			+"[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@"
+			+"(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+			message="请输入正确的电子邮箱")
+	@NotNull(message="电子邮箱不能为空")
 	private String email;
+	@NotNull(message="密码不能为空")
 	private String password;
 	private String familyName;
 	private String lastName;
@@ -27,6 +42,8 @@ public class UserGeneralInfo implements java.io.Serializable {
 	private String headThumb;
 	private Timestamp addTime;
 	private Timestamp beginTime;
+	private Integer gender;
+	private String genderName;
 	private Integer registerCheckState;
 	// Constructors
 
@@ -43,9 +60,9 @@ public class UserGeneralInfo implements java.io.Serializable {
 
 	/** full constructor */
 	public UserGeneralInfo(Integer userType, String userName, String email,
-			String password, String familyName, String lastName, String mobile,
-			String telephone, Integer location, Date birthday,
-			String headThumb, Timestamp addTime, Timestamp beginTime) {
+						   String password, String familyName, String lastName, String mobile,
+						   String telephone, Integer location, Date birthday,
+						   String headThumb, Timestamp addTime, Timestamp beginTime) {
 		this.userType = userType;
 		this.userName = userName;
 		this.email = email;
@@ -188,13 +205,39 @@ public class UserGeneralInfo implements java.io.Serializable {
 		this.beginTime = beginTime;
 	}
 
+	@Column(name = "userTypeName")
+	public String getUserTypeName() {
+		return userTypeName;
+	}
+
+	public void setUserTypeName(String userTypeName) {
+		this.userTypeName = userTypeName;
+	}
+
+	@Column(name = "gender")
+	public Integer getGender() {
+		return gender;
+	}
+
+	public void setGender(Integer gender) {
+		this.gender = gender;
+	}
+
+	@Column(name = "genderName")
+	public String getGenderName() {
+		return genderName;
+	}
+
+	public void setGenderName(String genderName) {
+		this.genderName = genderName;
+	}
+
 	@Column(name = "register_check_state")
 	public Integer getRegisterCheckState() {
-		return this.registerCheckState;
+		return registerCheckState;
 	}
 
 	public void setRegisterCheckState(Integer registerCheckState) {
 		this.registerCheckState = registerCheckState;
 	}
-
 }

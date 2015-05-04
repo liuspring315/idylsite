@@ -29,3 +29,6 @@
 <link href="${resourceUrl}/css/carousel-lvpaizhe.css" rel="stylesheet">
 <link href="${resourceUrl}/css/lvpaizhe.css" rel="stylesheet">
 <link href="${resourceUrl}/css/navbar-fixed-top.css" rel="stylesheet">
+
+<script src="${resourceUrl}/js/jquery/jquery.min.js"></script>
+<script src="${resourceUrl}/js/common.js"></script>

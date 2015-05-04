@@ -23,7 +23,7 @@ import java.util.Map;
 @Component
 public class RegisterDAO extends BaseSpringJdbcDaoImpl {
 
-	private static String USER_BY_LOGINNAME_OR_EMAIL = "SELECT ID,USER_TYPE,USER_NAME,EMAIL FROM USER_GENERAL_INFO WHERE USER_NAME = ? OR EMAIL = ?";
+	private static String USER_BY_LOGINNAME_OR_EMAIL = "SELECT ID,USER_TYPE,USER_NAME,EMAIL FROM user_general_info WHERE USER_NAME = ? OR EMAIL = ?";
 
 	private static String INSERT_USER_GENERAL_INFO = "INSERT INTO user_general_info (user_type, user_name, email, password, family_name, last_name, mobile, telephone, location, birthday, head_thumb, add_time, begin_time) VALUES (:userType, :userName, :email, :password, :familyName, :lastName, :mobile, :telephone, :location, :birthday, :headThumb,now(), now())";
 

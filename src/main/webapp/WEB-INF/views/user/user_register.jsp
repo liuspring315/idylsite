@@ -5,6 +5,28 @@
 <html lang="zh-cn">
 <head>
     <%@ include file="/WEB-INF/views/include/meta.jsp" %>
+    <script src="${resourceUrl}/js/jquery/jquery.validate.js" type="text/javascript"></script>
+    <script src="${resourceUrl}/js/jquery/jquery.metadata.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.metadata.setType("class");
+                $("#userRegisterForm").validate({
+                    ignore:".ignore",
+                    meta: "validate",
+                    focusInvalid: false,
+                    invalidHandler: function(form, validator) {
+                        validateShowMess(validator);
+                    },
+                    submitHandler: function(form) {
+                        if(!$("#agreeCheckBox").prop("checked")){
+                            alert("请阅读并同意注册协议");
+                            return false;
+                        }
+                        form.submit();
+                    }
+                });
+            });//end ready
+        </script>
 </head>
 
 <body>
@@ -33,34 +55,37 @@
                     <from:errors path="userName" cssClass="errorClass"/>
                     <label for="userName" class="col-sm-4 control-label">用户名</label>
                     <div class="col-sm-5">
-                        <from:input type="text" class="form-control" path="userName" placeholder="可使用英文字符、数字、汉字，最长××字符，必填"/>
+                        <from:input type="text" maxlength="30" class="form-control {validate:{required:true,trimstr:true,stringCheck:true,messages:{required:'请输入用户名'}}}" path="userName"
+                                    placeholder="可使用英文字符、数字、汉字，最长30字符，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <from:errors path="email" cssClass="errorClass"/>
                     <label for="email" class="col-sm-4 control-label">电子邮箱</label>
                     <div class="col-sm-5">
-                        <from:input type="email" class="form-control" path="email" placeholder="请填写正确邮箱，进行验证，必填"/>
+                        <from:input type="email" class="form-control {validate:{required:true,trimstr:true,email:true,messages:{required:'请输入邮箱'}}}"
+                                    path="email" placeholder="请填写正确邮箱，进行验证，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <from:errors path="password" cssClass="errorClass"/>
                     <label for="password" class="col-sm-4 control-label">密码</label>
                     <div class="col-sm-5">
-                        <from:input type="password" class="form-control" path="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填"/>
+                        <from:input type="password"  maxlength="20" class="form-control {validate:{required:true,trimstr:true,passwordVal:true,rangelength:[6,20],messages:{required:'请输入密码',rangelength:'密码长度应为6-20位'}}}"
+                                    path="password" placeholder="设置密码，最少6位，且至少同时包含字母和数字，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password2" class="col-sm-4 control-label">确认密码</label>
                     <div class="col-sm-5">
-                        <input type="password" class="form-control" id="password2" placeholder="请确认密码，必填"/>
+                        <input type="password" class="form-control {validate:{equalTo:'#password',messages:{equalTo:'输入的密码不一致'}}}" id="password2" placeholder="请确认密码，必填"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-1 col-sm-10">
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox"> 我已阅读并同意
+                                <input type="checkbox" id="agreeCheckBox" name="agreeCheckBox" value=""> 我已阅读并同意
                             </label>
                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#bs-photographer-register-modal">
                                 注册协议
@@ -81,7 +106,7 @@
     </div>
     <div class="row lvpaizhe-margin-bottom">
         <div class="col-sm-12 text-center">
-            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="server_register.html">加盟入驻</a>
+            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="${ctx}/server/register">加盟入驻</a>
         </div>
     </div>
     <!-- Three columns of text below the carousel -->

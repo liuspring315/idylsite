@@ -6,5 +6,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <spring:eval expression="@applicationProps['application.version']" var="applicationVersion"/>
+<spring:htmlEscape defaultHtmlEscape="false"/>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <c:set var="resourceUrl" value="${ctx}/resources"/>

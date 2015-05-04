@@ -10,14 +10,16 @@ public enum UserTypeEnum {
 //		3造型师
 //		4摄影机构管理员
 	CUSTOMER("会员",1,"customerAccountService","SELECT USER_TYPE, USER_NAME, EMAIL email, PASSWORD password," +
+			"  (CASE  WHEN USER_TYPE=1 THEN '会员'  WHEN USER_TYPE=2 THEN '摄影师' WHEN USER_TYPE=3 THEN '造型师' ELSE '摄影机构管理员' END) USERTYPENAME,"+
 			" FAMILY_NAME , LAST_NAME , MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, " +
 			"HEAD_THUMB , " +
 			"ADD_TIME , BEGIN_TIME ,ID id," +
-			"user_general_info_id ,signature,destination,remark" +
+			"user_general_info_id ,signature,destination,remark,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME " +
 			" FROM user_general_info g, customer_extra c " +
 			"WHERE g.user_type = 1  and g.id = c.user_general_info_id and  user_name = :USER_NAME and password = :PASSWORD"),
 	PHOTOGRAPHER("摄影师",2,"photographerAccountService",
 			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME, LAST_NAME ," +
+					"  (CASE  WHEN USER_TYPE=1 THEN '会员'  WHEN USER_TYPE=2 THEN '摄影师' WHEN USER_TYPE=3 THEN '造型师' ELSE '摄影机构管理员' END) USERTYPENAME,"+
 					" MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
 			"ADD_TIME , BEGIN_TIME ,ID id," +
 			"user_general_info_id ," +
@@ -29,11 +31,12 @@ public enum UserTypeEnum {
 			"idcard_back ,\n" +
 			"deposit,\n" +
 			"remark,\n" +
-			"register_check_state " +
+			"register_check_state,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
 			" FROM user_general_info g, photographer_extra c " +
 			"WHERE g.user_type = 2    and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
 	STYLIST("造型师",3,"stylistAccountService",
 			"SELECT USER_TYPE , USER_NAME, EMAIL email, PASSWORD password, FAMILY_NAME , LAST_NAME , MOBILE mobile," +
+					"  (CASE  WHEN USER_TYPE=1 THEN '会员'  WHEN USER_TYPE=2 THEN '摄影师' WHEN USER_TYPE=3 THEN '造型师' ELSE '摄影机构管理员' END) USERTYPENAME,"+
 					" TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
 			"ADD_TIME , BEGIN_TIME ,ID id," +
 			"user_general_info_id ,introduction,\n" +
@@ -44,11 +47,12 @@ public enum UserTypeEnum {
 			"idcard_back ,\n" +
 			"deposit,\n" +
 			"remark,\n" +
-			"register_check_state " +
+			"register_check_state,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
 			" FROM user_general_info g, stylist_extra c " +
 			"WHERE g.user_type = 3    and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
 	AGENCY("摄影机构管理员",4,"agencyAccountService",
 			"SELECT USER_TYPE , USER_NAME , EMAIL email, PASSWORD password, FAMILY_NAME , " +
+					"  (CASE  WHEN USER_TYPE=1 THEN '会员'  WHEN USER_TYPE=2 THEN '摄影师' WHEN USER_TYPE=3 THEN '造型师' ELSE '摄影机构管理员' END) USERTYPENAME,"+
 					"LAST_NAME lastName, MOBILE mobile, TELEPHONE telephone, LOCATION location, BIRTHDAY birthday, HEAD_THUMB , " +
 			"ADD_TIME , BEGIN_TIME ,ID id," +
 			"user_general_info_id ,authentication,\n" +
@@ -63,7 +67,7 @@ public enum UserTypeEnum {
 			"stylist_desc ,\n" +
 			"dress_desc ,\n" +
 			"address,\n" +
-			"register_check_state " +
+			"register_check_state,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
 			" FROM user_general_info g, agency_extra c " +
 			"WHERE g.user_type = 4   and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD")
 			;

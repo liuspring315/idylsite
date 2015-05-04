@@ -67,6 +67,7 @@ public class ShiroDbRealmService extends AuthorizingRealm {
 
             throw new UnknownAccountException("该用户已被锁定");
         }
+        user.setUserTypeName(UserTypeEnum.getUserTypeEnum(userType).getName());
         return new SimpleAuthenticationInfo(user,password,NAME);
 
     }

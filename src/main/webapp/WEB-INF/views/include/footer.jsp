@@ -13,6 +13,5 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <!-- jquery/2.1.3/ -->
-<script src="${resourceUrl}/js/jquery.min.js"></script>
 <!-- bootstrap/3.3.2 -->
 <script src="${resourceUrl}/js/bootstrap.min.js"></script>

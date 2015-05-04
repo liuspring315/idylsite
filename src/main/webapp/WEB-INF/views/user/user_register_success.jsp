@@ -13,20 +13,20 @@
 <div class="container">
     <ol class="breadcrumb">
         <li><a href="index.html">首页</a></li>
-        <li class="active">注册成功</li>
+        <li class="active">注册</li>
     </ol>
 </div>
 <div class="container marketing">
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h2>感谢您注册成功：）</h2>
+            <h2>${message}</h2>
             <p>记录生活中精彩的瞬间</p>
         </div>
     </div>
     <hr>
     <div class="row">
         <div class="col-lg-12 text-center">
-            注册成功！
+
         </div>
     </div>
     <div class="row lvpaizhe-margin-bottom">

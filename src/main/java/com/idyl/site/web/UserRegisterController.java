@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -24,15 +25,21 @@ public class UserRegisterController {
 	private UserRegisterService userRegisterService;
 
 	@RequestMapping(value="register",method = RequestMethod.GET)
-	public String index(@ModelAttribute UserGeneralInfo userGeneralInfo,Model model){
+	public String index(@ModelAttribute UserGeneralInfo userGeneralInfo){
 		return "user/user_register";
 	}
 	@RequestMapping(value="register",method = RequestMethod.POST)
-	public String register(Model model,@Valid @ModelAttribute UserGeneralInfo userGeneralInfo,BindingResult bindingResult){
+	public String register(Model model,@Valid @ModelAttribute UserGeneralInfo userGeneralInfo,BindingResult bindingResult,RedirectAttributes redirectAttributes){
 		if(bindingResult.hasErrors()){
 			return "user/user_register";
 		}
-		userRegisterService.saveUser(userGeneralInfo);
+		String message = userRegisterService.saveUser(userGeneralInfo);
+		redirectAttributes.addFlashAttribute("message",message);
+		return "redirect:/user/user_register_success";
+	}
+
+	@RequestMapping(value="user_register_success",method = RequestMethod.GET)
+	public String user_register_success(){
 		return "user/user_register_success";
 	}
 }
