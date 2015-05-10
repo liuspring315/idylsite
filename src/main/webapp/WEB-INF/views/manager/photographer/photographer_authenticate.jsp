@@ -3,6 +3,8 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/manager/meta.jsp" %>
+
+
 </head>
   <body class="skin-blue">
     <div class="wrapper">
@@ -33,19 +35,26 @@
                 <div class="box-body table-responsive no-padding">
                   <table class="table table-bordered">
                     <tbody>
-	                    <tr>
-	                      <td><button class="btn btn-block btn-info btn-lg text-center " data-toggle="modal" data-target="#bs-authenticate1">初级认证</button></td>
-	                      <td>上传清晰证件照片并填写证件号码，待审核通过后，您将取得初级认证</td>
-	                    </tr>
-	                    <tr>
-	                      <td><button class="btn btn-block btn-primary btn-lg text-center">中级认证</button></td>
-	                      <td>暂未开放</td>
-	                    </tr>
-	                    <tr>
-	                      <td><button class="btn btn-block btn-success btn-lg text-center">高级认证</button></td>
-	                      <td>暂未开放</td>
-	                    </tr>                    
-                  	</tbody>
+                    <tr>
+                      <td><button class="btn btn-block btn-info btn-lg text-center " data-toggle="modal" data-target="#bs-authenticate1">初级认证</button></td>
+                      <td>
+                        <c:if test="${user.authentication==0}">
+                        上传清晰证件照片并填写证件号码，待审核通过后，您将取得初级认证
+                        </c:if>
+                        <c:if test="${user.authentication==1}">
+                          审核通过
+                        </c:if>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><button class="btn btn-block btn-primary btn-lg text-center">中级认证</button></td>
+                      <td>暂未开放</td>
+                    </tr>
+                    <tr>
+                      <td><button class="btn btn-block btn-success btn-lg text-center">高级认证</button></td>
+                      <td>暂未开放</td>
+                    </tr>
+                    </tbody>
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -57,7 +66,7 @@
 
     </div><!-- ./wrapper -->
 
-     <!-- /初级认证申请框 -->
+    <!-- /初级认证申请框 -->
     <div class="modal fade" id="bs-authenticate1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
         <div class="modal-content">
@@ -66,16 +75,16 @@
             <h4 class="modal-title" id="mySmallModalLabel">申请初级认证</h4>
           </div>
           <div class="modal-body">
-          	<form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form">
               <div class="form-group">
                 <label for="inputCertificate" class="col-sm-3 control-label">证件类型</label>
-                <div class="radio col-sm-5">                        
+                <div class="radio col-sm-5">
                   <label>
                     <input type="radio" name="optionsRadios" id="inputCertificate" value="option1" checked="">
                     中国大陆居民身份证
                   </label>
-                 </div>
-                 <div class="radio col-sm-3">
+                </div>
+                <div class="radio col-sm-3">
                   <label>
                     <input type="radio" name="optionsRadios" id="inputCertificate" value="option2">
                     护照
@@ -91,24 +100,42 @@
               <div class="form-group">
                 <label for="inputCertificateImage1" class="col-sm-3 control-label">证件照正面</label>
                 <div class="col-sm-8">
-                  <img src="${resourceUrl}/manager/img/user1-128x128.jpg">
+                    <div class="fileinput fileinput_idcard_front-new" data-provides="fileinput_idcard_front">
+                        <div class="fileinput_idcard_front-preview thumbnail" data-trigger="fileinput_idcard_front" style="width: 250px; height: 150px;"></div>
+                        <div>
+                            <span class="btn btn-default btn-file"><span class="fileinput_idcard_front-new">选择</span><span class="fileinput_idcard_front-exists">更换</span>
+                                <input type="file" name="fileinput_idcard_front"></span>
+                            <a href="#" class="btn btn-default fileinput_idcard_front-exists" data-dismiss="fileinput_idcard_front">移除</a>
+                        </div>
+                    </div>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputCertificateImage2" class="col-sm-3 control-label">证件照背面</label>
                 <div class="col-sm-8">
-                  <img src="${resourceUrl}/manager/img/user1-128x128.jpg">
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                        <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 248px; height: 250px;"></div>
+                        <div>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                            <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                        </div>
+                    </div>
                 </div>
               </div>
               <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
-				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-				      </div>
+                  <c:if test="${user.authentication==0}">
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">保存</button>
+                  </c:if>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              </div>
             </form>
-					</div>
+          </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div>
 
   </body>
+<script src="${resourceUrl}/manager/plugins/jasny-bootstrap/js/jasny-bootstrap.min.js" type="text/javascript"></script>
+<link href="${resourceUrl}/manager/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css" />
 </html>

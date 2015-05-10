@@ -15,6 +15,7 @@ public class PhotographerAuthenticateController   extends BaseController {
 
 	@RequestMapping("authenticate")
 	public String index(HttpServletRequest request){
+
 		return "manager/photographer/photographer_authenticate";
 
 	}
