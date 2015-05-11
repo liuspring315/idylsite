@@ -34,9 +34,9 @@ public class RegisterDAO extends BaseSpringJdbcDaoImpl {
 //		3造型师
 //		4摄影机构管理员
 		insertExtraSqlMap.put(UserTypeEnum.CUSTOMER.getCode(),"INSERT INTO customer_extra (user_general_info_id) VALUES (:userGeneralInfoId)");
-		insertExtraSqlMap.put(UserTypeEnum.PHOTOGRAPHER.getCode(),"INSERT INTO photographer_extra (user_general_info_id,authentication,register_check_state) VALUES (:userGeneralInfoId,0,1)");
-		insertExtraSqlMap.put(UserTypeEnum.STYLIST.getCode(),"INSERT INTO stylist_extra (user_general_info_id,authentication,register_check_state) VALUES (:userGeneralInfoId,0,1)");
-		insertExtraSqlMap.put(UserTypeEnum.AGENCY.getCode(),"INSERT INTO agency_extra (user_general_info_id,authentication,register_check_state) VALUES (:userGeneralInfoId,0,1)");
+		insertExtraSqlMap.put(UserTypeEnum.PHOTOGRAPHER.getCode(),"INSERT INTO photographer_extra (user_general_info_id,authentication,authentication_stat,register_check_state) VALUES (:userGeneralInfoId,0,0,1)");
+		insertExtraSqlMap.put(UserTypeEnum.STYLIST.getCode(),"INSERT INTO stylist_extra (user_general_info_id,authentication,authentication_stat,register_check_state) VALUES (:userGeneralInfoId,0,0,1)");
+		insertExtraSqlMap.put(UserTypeEnum.AGENCY.getCode(),"INSERT INTO agency_extra (user_general_info_id,authentication,authentication_stat,register_check_state) VALUES (:userGeneralInfoId,0,0,1)");
 	}
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 	@Autowired
