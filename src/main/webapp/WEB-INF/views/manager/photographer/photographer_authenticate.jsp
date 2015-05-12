@@ -5,28 +5,7 @@
     <%@ include file="/WEB-INF/views/include/manager/meta.jsp" %>
     <script src="${resourceUrl}/js/jquery/jquery.validate.js" type="text/javascript"></script>
     <script src="${resourceUrl}/js/jquery/jquery.metadata.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("#authentication1Button").click(function(){
-                $('#authenticate1Modal').modal('show');
-                $.metadata.setType("class");
-                $("#photographerAuthenticationForm").validate({
-                    ignore:".ignore",
-                    meta: "validate",
-                    focusInvalid: false,
-                    invalidHandler: function(form, validator) {
-                        validateShowMess(validator);
-                    },
-                    submitHandler: function(form) {
-                        form.submit();
-                    }
-                });
-                $("#photographerAuthenticationButton").click(function(){
-                    $("#photographerAuthenticationForm").submit();
-                });
-            });
-        });//end ready
-    </script>
+
 
 </head>
 <body class="skin-blue">
@@ -65,7 +44,10 @@
                                     </td>
                                     <td>
                                         <c:if test="${user.authentication==0}">
-                                            上传清晰证件照片并填写证件号码，待审核通过后，您将取得初级认证
+                                            <c:if test="${user.authenticationStat==0}">上传清晰证件照片并填写证件号码，待审核通过后，您将取得初级认证</c:if>
+                                            <c:if test="${user.authenticationStat==1}">已申请初级认证，待审核</c:if>
+                                            <c:if test="${user.authenticationStat==2}">已申请初级认证，审核通过</c:if>
+                                            <c:if test="${user.authenticationStat==3}">已申请初级认证，审核不通过</c:if>
                                         </c:if>
                                         <c:if test="${user.authentication==1}">
                                             审核通过
@@ -119,13 +101,13 @@
 
                         <div class="radio col-sm-5">
                             <label>
-                                <input type="radio" name="certificateType" value="1" checked>
+                                <input type="radio" name="certificateType" id="certificateType1" value="1" checked>
                                 中国大陆居民身份证
                             </label>
                         </div>
                         <div class="radio col-sm-3">
                             <label>
-                                <input type="radio" name="certificateType" value="2">
+                                <input type="radio" name="certificateType" id="certificateType2" value="2">
                                 护照
                             </label>
                         </div>
@@ -134,7 +116,8 @@
                         <label for="certificateNum" class="col-sm-3 control-label">证件号码</label>
 
                         <div class="col-sm-8">
-                            <input type="text" class="form-control {validate:{required:true,trimstr:true,messages:{required:'请输入证件号码'}}}" name="certificateNum" id="certificateNum">
+                            <input type="text" class="form-control {validate:{required:true,trimstr:true,messages:{required:'请输入证件号码'}}}"
+                                   name="certificateNum" id="certificateNum">
                         </div>
                     </div>
                     <div class="form-group">
@@ -144,10 +127,11 @@
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput"
                                      style="width: 248px; height: 250px;"></div>
+                                <img id="imgIdcardFront" src="${resourceUrl}/manager/img/user2-160x160.jpg"/>
                                 <div>
                       <span class="btn btn-default btn-file"><span class="fileinput-new">选择图片</span><span
                               class="fileinput-exists">更改</span>
-                        <input type="file" name="idcard_front" accept="image/jpeg" class="{validate:{required:true,trimstr:true,messages:{required:'请选择图片'}}}"></span>
+                        <input type="file" name="idcard_front"  class="{validate:{required:true,trimstr:true,messages:{required:'请选择图片'}}}"></span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">移除</a>
                                 </div>
                             </div>
@@ -159,11 +143,13 @@
                         <div class="col-sm-8">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput"
-                                     style="width: 248px; height: 250px;"></div>
+                                     style="width: 248px; height: 250px;">
+                                    <img id="imgIdcardBack" src="${resourceUrl}/manager/img/user2-160x160.jpg"/>
+                                </div>
                                 <div>
                             <span class="btn btn-default btn-file"><span class="fileinput-new">选择图片</span><span
                                     class="fileinput-exists">更改</span>
-                              <input type="file" accept="image/jpeg" name="idcard_back"></span>
+                              <input type="file" name="idcard_back"></span>
                                     <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">移除</a>
                                 </div>
                             </div>
@@ -186,6 +172,42 @@
 
 </body>
 <script src="${resourceUrl}/manager/plugins/jasny-bootstrap/js/jasny-bootstrap.min.js" type="text/javascript"></script>
-<link href="${resourceUrl}/manager/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet"
-      type="text/css"/>
+<link href="${resourceUrl}/manager/plugins/jasny-bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+    $(document).ready(function() {
+        <c:if test="${user.authenticationStat!=2}">
+        $("#authentication1Button").click(function(){
+            $('#authenticate1Modal').modal('show');
+            $("#certificateNum").val("${user.certificateNum}");
+            $("#certificateType${user.certificateType}").prop("checked","true");
+            <c:if test="${not empty user.idcardFront}">
+            var idcardFront="${fn: replace(user.idcardFront,'\\','%5C')}";
+            $("#imgIdcardFront").prop("src","${ctx}/manager/photographer/idcard?path="+idcardFront);
+            </c:if>
+            <c:if test="${not empty user.idcardBack}">
+            var idcardBack="${fn: replace(user.idcardBack,'\\','%5C')}";
+            $("#imgIdcardBack").prop("src","${ctx}/manager/photographer/idcard?path="+idcardBack);
+            </c:if>
+
+            $.metadata.setType("class");
+            $("#photographerAuthenticationForm").validate({
+                ignore:".ignore",
+                meta: "validate",
+                focusInvalid: false,
+                invalidHandler: function(form, validator) {
+                    validateShowMess(validator);
+                },
+                submitHandler: function(form) {
+                    form.submit();
+                }
+            });
+            $("#photographerAuthenticationButton").click(function(){
+                $("#photographerAuthenticationForm").submit();
+            });
+        });
+        </c:if>
+
+
+    });//end ready
+</script>
 </html>

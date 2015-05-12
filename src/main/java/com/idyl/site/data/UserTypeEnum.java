@@ -31,7 +31,7 @@ public enum UserTypeEnum {
 			"idcard_back ,\n" +
 			"deposit,\n" +
 			"remark,\n" +
-			"register_check_state,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
+			"register_check_state,authentication_stat,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
 			" FROM user_general_info g, photographer_extra c " +
 			"WHERE g.user_type = 2    and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
 	STYLIST("造型师",3,"stylistAccountService",
@@ -47,7 +47,7 @@ public enum UserTypeEnum {
 			"idcard_back ,\n" +
 			"deposit,\n" +
 			"remark,\n" +
-			"register_check_state,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
+			"register_check_state,authentication_stat,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
 			" FROM user_general_info g, stylist_extra c " +
 			"WHERE g.user_type = 3    and g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD"),
 	AGENCY("摄影机构管理员",4,"agencyAccountService",
@@ -67,7 +67,7 @@ public enum UserTypeEnum {
 			"stylist_desc ,\n" +
 			"dress_desc ,\n" +
 			"address,\n" +
-			"register_check_state,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
+			"register_check_state,authentication_stat,GENDER,(CASE WHEN GENDER = 0 THEN '男' ELSE '女' END) GENDERNAME  " +
 			" FROM user_general_info g, agency_extra c " +
 			"WHERE g.user_type = 4   and  g.id = c.user_general_info_id and user_name = :USER_NAME and password = :PASSWORD")
 			;
