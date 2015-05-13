@@ -126,8 +126,9 @@
                         <div class="col-sm-8">
                             <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput"
-                                     style="width: 248px; height: 250px;"></div>
-                                <img id="imgIdcardFront" src="${resourceUrl}/manager/img/user2-160x160.jpg"/>
+                                     style="width: 248px; height: 250px;">
+                                    <img id="imgIdcardFront" src="${resourceUrl}/manager/img/user2-160x160.jpg"/>
+                                </div>
                                 <div>
                       <span class="btn btn-default btn-file"><span class="fileinput-new">选择图片</span><span
                               class="fileinput-exists">更改</span>
